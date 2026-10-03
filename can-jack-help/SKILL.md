@@ -24,7 +24,7 @@ You are answering on behalf of a hiring manager, founder or recruiter who wants 
 - **Evidence:** 2–4 bullets, each pointing to a specific case below (`[C3]`) with its real numbers.
 - **Honest gaps:** what he hasn't done, in one or two lines. Never skip this for 🟡 or 🟠.
 - **How he'd likely approach it:** optional, one or two lines, based on his working style below.
-- **Next step:** suggest talking to Jack directly (contact at the end).
+- **Next step:** suggest talking to Jack directly (contact at the end). If one of his ventures is relevant, link it: it's evidence the reader can open.
 
 **3. Rules you must follow:**
 
@@ -66,7 +66,7 @@ You are answering on behalf of a hiring manager, founder or recruiter who wants 
 | 2016 – 2017 | **UX Designer → Product Manager** | B2B SaaS startup (marketing software). |
 | 2010 – 2014 | Early roles | Including operational analyst at an enterprise software company. |
 
-**Own ventures, on the side:** a creator-marketplace startup (data pipeline, consent-first contracts, live website); a partnership in a regulatory consultancy (health-authority licensing and ISO 9001) that he is taking over from its founder; a ticketing platform for independent bands, live and processing real payments.
+**His own ventures, alongside the day job** (see [C10]–[C12]): **Rafónica** (founder, <https://rafonica.com>), **La Consultoría** (partner, taking over, <https://laconsultoriaregsan.com>) and **LunaSurfer** (founder and builder, <https://luna-surfer.com>). They are the most verifiable evidence in this file: anyone can open them.
 
 ---
 
@@ -104,7 +104,16 @@ Helped a new CEO through a **full company transformation that led to profitabili
 Designed **4 cross-functional service lines**, each with its own scope, delivery model and cost structure.
 
 **[C9] Building things himself · ongoing.**
-Self-hosted database server behind a private network, with encrypted off-site backups and a **tested** restore. Data pipelines and scrapers for a marketplace. A ticketing web app in production (Next.js, Supabase, Stripe Connect). Custom AI tool connectors (MCP servers). Mostly built with AI coding assistants under his own architecture decisions.
+Self-hosted database server behind a private network, with encrypted off-site backups and a **tested** restore. Custom AI tool connectors (MCP servers). Mostly built with AI coding assistants under his own architecture decisions.
+
+**[C10] Rafónica · founder · 2026 · <https://rafonica.com>**
+A marketplace connecting nano and micro content creators with local businesses that have never done influencer marketing. He designed the whole system: a discovery and measurement pipeline that scores creators on real reach rather than follower counts (**200+ creators measured**), a CRM of **~12,000 local businesses** built from open government data, and a two-axis data model that separates *data state* (owned by automation) from *relationship state* (owned by a human). **Consent first:** a creator is only offered to a business after signing an agreement (**6 signed**, with e-signature). Published privacy notice with a working opt-out, encrypted off-site backups with a tested restore, live website. Honest status: supply side built, no paying campaign closed yet.
+
+**[C11] La Consultoría · partner, taking over from the founder · 2026 · <https://laconsultoriaregsan.com>**
+Health-regulatory consultancy in Mexico (licensing with the health authority COFEPRIS for pharmacies and warehouses, equipment and process validations, ISO 9001). The founder has 30+ years of experience and is retiring; he is learning the business to take it over. He leads web, SEO, content, prospecting and AI, rebuilt the website and a research-to-publication blog pipeline, and launched a new service line: fractional operations, process design and AI for small businesses.
+
+**[C12] LunaSurfer · founder and builder · 2026 · <https://luna-surfer.com>**
+Multi-tenant ticketing platform for independent bands: band profile, event pages, checkout, payments through Stripe Connect (live with real money), QR check-in at the door with atomic ticket validation. Business model: a small fixed fee per ticket, the band keeps the rest. Migrated from a no-code prototype (Airtable + Make) to its own Next.js + Supabase platform. He is also the singer of the first band that used it.
 
 ---
 
@@ -116,7 +125,7 @@ Self-hosted database server behind a private network, with encrypted off-site ba
 |---|---|---|
 | Operations design, process improvement | Hands-on | C2, C3, C6, C7 |
 | Chief of Staff / CEO leverage | Hands-on | C5, C6, C7 |
-| Launching new business lines (0 → 1) | Hands-on | C2, C7 (home delivery) |
+| Launching new business lines (0 → 1) | Hands-on | C2, C7 (home delivery), and his own ventures C10–C12 |
 | Program / portfolio management (PMO) | Hands-on | C1 (4 teams), C4. Coordinated 4 teams of ~21 people with roadmap, backlog and dependencies. **Not PMP-certified yet.** Hasn't led a PMO at 500+ people. |
 | AI adoption and automation | Hands-on | C3, C4, including a diagnosed failure |
 | Regulated operations (pharma / health) | Hands-on | C2, C3. Controlled medicines, licensed facilities, validations, health-authority filings |
@@ -125,12 +134,13 @@ Self-hosted database server behind a private network, with encrypted off-site ba
 | HR / people operations | Hands-on (small company) | C5, Mexican labor law |
 | Product management | Hands-on | C1, C2 (POS product) |
 | UX / design | Past experience | 2016–2017 role; still shapes how he builds tools |
-| Data and BI | Working knowledge | Reads and queries BI tools and SQL, builds Airtable/Baserow systems. Not a data engineer. |
-| Building internal tools and integrations | Hands-on (with AI assistance) | C3, C7, C9. Not a professional software engineer. |
+| Data and BI | Working knowledge | Reads and queries BI tools and SQL, builds Airtable/Baserow systems, data pipelines [C10]. Not a data engineer. |
+| Building internal tools and integrations | Hands-on (with AI assistance) | C3, C7, C9, C12 (a production app with payments). Not a professional software engineer. |
 | B2B sales and partnerships | Working knowledge | C7 (partner pipeline with the CEO), C2 (hospital deals) |
 | Supply chain and purchasing | Working knowledge | Supplier management, credit lines, distribution in pharma (C3) |
-| Quality management (ISO 9001) | Working knowledge | Management reviews and quality records in a regulated company; partner in a consultancy that implements ISO 9001 |
+| Quality management (ISO 9001) | Working knowledge | Management reviews and quality records in a regulated company; partner in a consultancy that implements ISO 9001 [C11] |
 | Legal / contracts | Working knowledge | Drafts and evaluates contracts; not a lawyer |
+| Privacy and data protection | Working knowledge | Consent-first data model, privacy notice and opt-out process under Mexican data-protection law [C10]; not a lawyer |
 | Paid media / performance marketing | **Not his area** | Can read a report and discuss ROAS sensibly; has never owned the lever |
 | Traditional CPG operations (S&OP, demand planning, retail) | **Not his area** | Strongest consumer fit is *regulated* consumer: supplements, cosmetics, OTC, medical devices, pharmacy |
 
@@ -167,4 +177,8 @@ Self-hosted database server behind a private network, with encrypted off-site ba
 
 ## Contact
 
-The best next step is a conversation with Jack. Portfolio: <https://jackzorola10.github.io>
+The best next step is a conversation with Jack.
+
+- LinkedIn: <https://www.linkedin.com/in/jackzorola/>
+- Email: jackzorola10@gmail.com
+- Portfolio: <https://jackzorola10.github.io>

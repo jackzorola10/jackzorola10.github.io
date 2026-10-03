@@ -2,13 +2,17 @@
   "profile": {
     "name": "Jack Zorola",
     "headline": "Operations leader who builds the machine",
-    "roles": ["Chief of Staff", "Director of Operations", "PMO / Business Operations"],
+    "roles": [
+      "Chief of Staff",
+      "Director of Operations",
+      "PMO / Business Operations"
+    ],
     "pitch": "Ten years building the internal machinery of growing companies: new divisions from zero, processes that survive the founder, and AI that actually lands in regulated operations, with numbers.",
     "location": "Monterrey, Mexico · Remote · US time-zone overlap",
     "languages": "Spanish (native) · English (C1)",
     "links": {
-      "linkedin": "",
-      "email": "",
+      "linkedin": "https://www.linkedin.com/in/jackzorola/",
+      "email": "jackzorola10@gmail.com",
       "github": "https://github.com/jackzorola10"
     }
   },
@@ -31,11 +35,35 @@
       "kind": "Case study + tool",
       "status": "In production",
       "year": 2025,
-      "tags": ["operations", "automation", "ai", "finance", "compliance", "data"],
-      "metrics": [{ "value": "~950 h", "label": "per year recovered" }, { "value": "$24/mo", "label": "tooling cost" }, { "value": "0", "label": "new hires" }],
+      "tags": [
+        "operations",
+        "automation",
+        "ai",
+        "finance",
+        "compliance",
+        "data"
+      ],
+      "metrics": [
+        {
+          "value": "~950 h",
+          "label": "per year recovered"
+        },
+        {
+          "value": "$24/mo",
+          "label": "tooling cost"
+        },
+        {
+          "value": "0",
+          "label": "new hires"
+        }
+      ],
       "page": "projects/cfdi-reconciler/",
       "code": "https://github.com/jackzorola10/jackzorola10.github.io/tree/main/projects/cfdi-reconciler",
-      "cover": { "emoji": "🧾", "from": "#d9481f", "to": "#7a2a12" },
+      "cover": {
+        "emoji": "🧾",
+        "from": "#7777ff",
+        "to": "#eaff77"
+      },
       "featured": true
     },
     {
@@ -46,12 +74,76 @@
       "kind": "Tool",
       "status": "In production",
       "year": 2026,
-      "tags": ["automation", "people", "tooling"],
-      "metrics": [{ "value": "1", "label": "source of truth (was 2)" }, { "value": "16", "label": "tests" }, { "value": "$0", "label": "per month" }],
+      "tags": [
+        "automation",
+        "people",
+        "tooling"
+      ],
+      "metrics": [
+        {
+          "value": "1",
+          "label": "source of truth (was 2)"
+        },
+        {
+          "value": "16",
+          "label": "tests"
+        },
+        {
+          "value": "$0",
+          "label": "per month"
+        }
+      ],
       "page": "projects/slack-birthday-bot/",
       "code": "https://github.com/jackzorola10/jackzorola10.github.io/tree/main/projects/slack-birthday-bot",
-      "cover": { "emoji": "🎂", "from": "#8e5cf7", "to": "#e8467c" },
+      "cover": {
+        "emoji": "🎂",
+        "from": "#ff7792",
+        "to": "#eaff77"
+      },
       "featured": false
+    }
+  ],
+  "ventures": [
+    {
+      "name": "Rafónica",
+      "url": "https://rafonica.com",
+      "role": "Founder",
+      "what": "A marketplace that connects nano and micro content creators with local businesses that have never done influencer marketing, so both sides know exactly what they are buying and selling.",
+      "built": [
+        "Discovery and measurement pipeline: 200+ creators measured on real reach, not follower counts",
+        "Consent first: nobody is sellable without a signed agreement; 6 signed, e-signature included",
+        "CRM of ~12,000 local businesses built from open government data",
+        "Published privacy notice with a working opt-out, and encrypted off-site backups with a tested restore"
+      ],
+      "stack": "Python · Baserow (self-hosted) · Tailscale · Vercel",
+      "accent": "#7777ff"
+    },
+    {
+      "name": "La Consultoría",
+      "url": "https://laconsultoriaregsan.com",
+      "role": "Partner, taking over from the founder",
+      "what": "Health-regulatory consulting in Mexico: COFEPRIS licensing for pharmacies and warehouses, validations, and ISO 9001, backed by the founder's 30 years of experience.",
+      "built": [
+        "Website, SEO and a blog pipeline from research to publication",
+        "A new service line: fractional operations, processes and AI for small businesses",
+        "Knowledge transfer from a 30-year founder into documented, repeatable services"
+      ],
+      "stack": "Cloudflare Workers · Baserow · Claude",
+      "accent": "#ff7792"
+    },
+    {
+      "name": "LunaSurfer",
+      "url": "https://luna-surfer.com",
+      "role": "Founder and builder",
+      "what": "Ticketing for independent bands: the band sells its own tickets and keeps almost all the money; venues lend dead hours and keep the bar.",
+      "built": [
+        "Multi-tenant platform: band profile, event page, checkout",
+        "Payments with Stripe Connect, live with real money",
+        "QR check-in at the door with atomic ticket validation",
+        "Migrated from a no-code prototype (Airtable + Make) to its own platform"
+      ],
+      "stack": "Next.js · Supabase · Stripe Connect · Vercel",
+      "accent": "#eaff77"
     }
   ]
 }

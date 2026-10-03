@@ -7,28 +7,27 @@
 <meta name="description" content="Jack Zorola: Chief of Staff and operations leader. Interactive projects and case studies on operations, automation and AI in regulated businesses.">
 <link rel="icon" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
   .hero { padding-top: 64px; padding-bottom: 48px; }
   .hero h1 { margin: 14px 0 18px; max-width: 920px; }
-  .hero h1 em { color: var(--accent); }
   .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
   .facts { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 22px; font-size: 14px; color: var(--muted); }
   .chairs { position: relative; display: grid; grid-template-columns: repeat(7, minmax(120px, 1fr)); gap: 0; overflow-x: auto; padding: 8px 0 4px; }
   .chair { position: relative; padding: 34px 12px 0 0; }
   .chair::before { content: ""; position: absolute; top: 14px; left: 0; right: 0; border-top: 2px solid var(--line); }
   .chair::after { content: ""; position: absolute; top: 8px; left: 0; width: 14px; height: 14px; border-radius: 50%; background: var(--surface); border: 2px solid var(--ink-2); }
-  .chair.now::after { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 5px var(--accent-soft); }
+  .chair.now::after { background: var(--lime); border-color: var(--ink); box-shadow: 0 0 0 5px rgba(234,255,119,.45); }
   .chair b { display: block; font-size: 15px; line-height: 1.25; }
   .chair span { font: 12px var(--mono); color: var(--muted); }
   .chair p { margin: 6px 0 0; font-size: 13px; color: var(--ink-2); }
   .edge { display: grid; gap: 14px; grid-template-columns: 1fr; }
   @media (min-width: 760px) { .edge { grid-template-columns: repeat(5, 1fr); } }
-  .edge .card { padding: 18px; } .edge .n { font: 600 12px var(--mono); color: var(--accent); } .edge h3 { font-size: 16px; margin: 6px 0 6px; } .edge p { margin: 0; font-size: 14px; color: var(--ink-2); }
+  .edge .card { padding: 18px; } .edge .n { font: 700 12px var(--mono); color: var(--accent); } .edge h3 { font-size: 16px; margin: 6px 0 6px; } .edge p { margin: 0; font-size: 14px; color: var(--ink-2); }
   .filters { display: flex; flex-wrap: wrap; gap: 6px; margin: 18px 0 20px; }
   .filters button { cursor: pointer; }
-  .filters button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .filters button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
   .projects { display: grid; gap: 18px; grid-template-columns: 1fr; }
   @media (min-width: 760px) { .projects { grid-template-columns: 1fr 1fr; } }
   .project { display: grid; grid-template-rows: auto 1fr; overflow: hidden; text-decoration: none; transition: transform .15s ease, box-shadow .15s ease; }
@@ -38,27 +37,36 @@
   .cover .kind { position: absolute; left: 14px; top: 14px; }
   .cover .chip { background: rgba(255,255,255,.92); color: #16161a; border: 0; }
   .body { padding: 20px 22px 22px; display: grid; gap: 10px; align-content: start; }
-  .body h3 { font-family: var(--serif); font-weight: 400; font-size: 28px; line-height: 1.1; letter-spacing: -.01em; }
+  .body h3 { font-weight: 700; font-size: 26px; line-height: 1.1; letter-spacing: -.025em; }
   .body p { margin: 0; color: var(--ink-2); font-size: 15px; }
   .metrics { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 6px; padding-top: 12px; border-top: 1px solid var(--line); }
-  .metrics div b { display: block; font: 600 18px var(--mono); } .metrics div span { font-size: 12px; color: var(--muted); }
+  .metrics div b { display: block; font: 800 20px var(--sans); color: var(--ink); letter-spacing: -.02em; } .metrics div span { font-size: 12px; color: var(--muted); }
   .links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+  .ventures { display: grid; gap: 16px; grid-template-columns: 1fr; }
+  @media (min-width: 900px) { .ventures { grid-template-columns: repeat(3, 1fr); } }
+  .venture { padding: 24px; display: grid; gap: 12px; align-content: start; position: relative; overflow: hidden; }
+  .venture::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 6px; background: var(--v); }
+  .venture h3 { font-size: 24px; letter-spacing: -.025em; }
+  .venture .role { font: 400 11.5px var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+  .venture p { margin: 0; font-size: 15px; color: var(--soft); }
+  .venture ul { margin: 0; padding-left: 18px; font-size: 14px; color: var(--ink-2); display: grid; gap: 6px; }
+  .venture .stack { font: 400 11.5px var(--mono); color: var(--muted); }
   .banner { display: grid; gap: 18px; align-items: center; grid-template-columns: 1fr; padding: 28px; background: var(--ink); color: var(--paper); border-radius: var(--radius); }
   @media (min-width: 860px) { .banner { grid-template-columns: 1fr auto; padding: 40px; } }
   .banner h2 { color: var(--paper); } .banner p { color: color-mix(in srgb, var(--paper) 75%, transparent); margin: 8px 0 0; max-width: 640px; }
-  .banner .btn { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .banner { position: relative; overflow: hidden; } .banner::after { content: ""; position: absolute; right: -120px; top: -120px; width: 360px; height: 360px; border-radius: 50%; background: radial-gradient(circle, rgba(119,119,255,.45), rgba(119,119,255,0) 65%); } .banner > * { position: relative; z-index: 1; } .banner .btn { background: var(--lime); border-color: var(--lime); color: var(--ink); box-shadow: none; } .banner h2 em { color: var(--lime); }
 </style>
 </head>
 <body>
 <header class="topbar"><div class="wrap">
   <a class="brand" href="./">Jack Zorola<span>.</span></a>
-  <nav><a href="#projects">Projects</a><a href="can-jack-help/">Can Jack help?</a><a class="hide-sm" href="https://github.com/jackzorola10/jackzorola10.github.io">GitHub</a><button class="theme-toggle" type="button"></button></nav>
+  <nav><a href="#projects">Projects</a><a class="hide-sm" href="#ventures">Ventures</a><a href="can-jack-help/">Can Jack help?</a><a class="hide-sm" href="https://github.com/jackzorola10/jackzorola10.github.io">GitHub</a></nav>
 </div></header>
 
 <main>
 <div class="wrap hero">
   <div class="eyebrow" id="roles">Chief of Staff · Director of Operations · PMO</div>
-  <h1>I build the machine that runs the company, then <em>leave it running without me.</em></h1>
+  <h1>I build the <span class="hl">machine</span> that runs the company, then <em>leave it running without me.</em></h1>
   <p class="lead" id="pitch"></p>
   <div class="cta">
     <a class="btn" href="#projects">See the work</a>
@@ -70,7 +78,7 @@
 
 <section><div class="wrap">
   <div class="eyebrow">Career</div>
-  <h2 style="margin:8px 0 6px">Six chairs before this one</h2>
+  <h2 style="margin:12px 0 6px">Six chairs <em>before</em> this one</h2>
   <p class="muted" style="margin:0 0 26px;max-width:700px">I learned the business from every seat (design, product, delivery, operations, a new division) before running it as Chief of Staff.</p>
   <div class="chairs">
     <div class="chair"><span>2016</span><b>UX Designer</b><p>B2B SaaS</p></div>
@@ -85,7 +93,7 @@
 
 <section><div class="wrap">
   <div class="eyebrow">The intersection</div>
-  <h2 style="margin:8px 0 22px">Five things that rarely come together</h2>
+  <h2 style="margin:12px 0 22px">Five things that <em>rarely</em> come together</h2>
   <div class="edge">
     <div class="card"><div class="n">01</div><h3>Regulated operations</h3><p>Controlled medicines, licensed facilities, validations. Where a bad process is illegal, not just slow.</p></div>
     <div class="card"><div class="n">02</div><h3>Every seat</h3><p>Design, product, delivery, ops and leadership, from the inside.</p></div>
@@ -97,15 +105,22 @@
 
 <section id="projects"><div class="wrap">
   <div class="eyebrow">Projects</div>
-  <h2 style="margin:8px 0 4px">Things I built, rewritten so you can open them</h2>
+  <h2 style="margin:12px 0 4px">Things I built, <em>rewritten</em> so you can open them</h2>
   <p class="muted" style="margin:0;max-width:720px">Each one comes from real work. Company details are removed, the code is rewritten from scratch, and the data is fictional. Most have something you can click.</p>
   <div class="filters" id="filters"></div>
   <div class="projects" id="grid"><p class="muted">Loading…</p></div>
 </div></section>
 
+<section id="ventures"><div class="wrap">
+  <div class="eyebrow">Ventures</div>
+  <h2 style="margin:12px 0 4px">What I build <em>on my own time</em></h2>
+  <p class="muted" style="margin:0 0 24px;max-width:720px">Three businesses I founded or run alongside my day job. Same habits: start from the real problem, write the decisions down, and build the machine so it doesn't depend on me.</p>
+  <div class="ventures" id="ventures-grid"></div>
+</div></section>
+
 <section><div class="wrap">
   <div class="banner">
-    <div><h2>Don't take my word for it</h2><p>Give my skill file to your own AI and ask whether I can help with your problem. It's told to be honest, including "not his area".</p></div>
+    <div><h2>Don't take <em>my</em> word for it</h2><p>Give my skill file to your own AI and ask whether I can help with your problem. It's told to be honest, including "not his area".</p></div>
     <a class="btn" href="can-jack-help/">Ask your AI →</a>
   </div>
 </div></section>
@@ -143,7 +158,7 @@
     $('grid').innerHTML = list.map(x => `
       <article class="card project">
         <a class="cover" href="${esc(x.page)}" style="background:linear-gradient(135deg, ${esc(x.cover.from)}, ${esc(x.cover.to)})" aria-label="${esc(x.title)}">
-          <span class="kind chips"><span class="chip">${esc(x.kind)}</span>${x.status ? `<span class="chip">● ${esc(x.status)}</span>` : ''}</span>${x.cover.emoji}
+          <span class="kind chips"><span class="chip">${esc(x.kind)}</span>${x.status ? `<span class="chip live">${esc(x.status)}</span>` : ''}</span>${x.cover.emoji}
         </a>
         <div class="body">
           <h3><a href="${esc(x.page)}" style="text-decoration:none">${esc(x.title)}</a></h3>
@@ -156,6 +171,15 @@
       </article>`).join('') || '<p class="muted">Nothing here yet.</p>';
   };
   renderFilters(); renderGrid();
+  $('ventures-grid').innerHTML = (data.ventures || []).map(v => `
+    <article class="card venture" style="--v:${esc(v.accent)}">
+      <div class="role">${esc(v.role)}</div>
+      <h3>${esc(v.name)}</h3>
+      <p>${esc(v.what)}</p>
+      <ul>${v.built.map(b => `<li>${esc(b)}</li>`).join('')}</ul>
+      <div class="stack">${esc(v.stack)}</div>
+      <div><a class="btn ghost" href="${esc(v.url)}" target="_blank" rel="noopener">${esc(v.url.replace('https://', ''))} ↗</a></div>
+    </article>`).join('');
 })();
 </script>
 </body>

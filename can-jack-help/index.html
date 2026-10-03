@@ -7,7 +7,7 @@
 <meta name="description" content="Give this skill file to your AI assistant and ask whether Jack can help with your problem. Honest verdicts, real evidence, explicit gaps.">
 <link rel="icon" href="../assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/site.css">
 <style>
   .hero { padding-top: 56px; padding-bottom: 40px; }
@@ -25,7 +25,7 @@
   .way { padding: 22px; display: grid; gap: 10px; align-content: start; } .way p { margin: 0; color: var(--ink-2); font-size: 14px; }
   .chat { display: grid; gap: 14px; }
   .bubble { padding: 16px 18px; border-radius: 14px; max-width: 760px; font-size: 15px; }
-  .bubble.q { background: var(--ink); color: var(--paper); justify-self: end; border-bottom-right-radius: 4px; }
+  .bubble.q { background: var(--ink); color: #fff; justify-self: end; border-bottom-right-radius: 4px; }
   .bubble.a { background: var(--surface); border: 1px solid var(--line); border-bottom-left-radius: 4px; }
   .bubble.a ul { margin: 8px 0; padding-left: 18px; } .bubble.a p { margin: 6px 0; }
   .samples { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -35,13 +35,13 @@
 <body>
 <header class="topbar"><div class="wrap">
   <a class="brand" href="../">Jack Zorola<span>.</span></a>
-  <nav><a href="../#projects">Projects</a><a class="hide-sm" href="SKILL.md">SKILL.md</a><button class="theme-toggle" type="button"></button></nav>
+  <nav><a href="../#projects">Projects</a><a class="hide-sm" href="SKILL.md">SKILL.md</a></nav>
 </div></header>
 
 <main>
 <div class="wrap hero">
   <div class="eyebrow">A skill for your AI assistant</div>
-  <h1>Can Jack help me with…?</h1>
+  <h1>Can Jack help <em>me</em> with<span class="hl">…?</span></h1>
   <p class="lead">Don't take my word for it. Ask your own AI. This skill file gives it my experience, real numbers and honest gaps, plus rules that stop it from overselling me. You'll get a straight verdict, including "not his area".</p>
   <div class="ask">
     <label for="q">Your problem</label>

@@ -70,7 +70,7 @@
     } catch (e) { catalog = FALLBACK_CATALOG; }
   }
 
-  const colors = ['#d9481f', '#2a62d4', '#1f8a4c', '#8e5cf7', '#b7791f', '#e8467c', '#18a999', '#636e72'];
+  const colors = ['#7777ff', '#ff7792', '#1a1a19', '#5a5af0', '#d9577a', '#37352f', '#8f8fff', '#504e49'];
   const initials = n => n.split(' ').map(w => w[0]).join('').slice(0, 2);
   const short = dn => { const x = C.fromDayNumber(dn); return `${'JanFebMarAprMayJunJulAugSepOctNovDec'.substr((x.m - 1) * 3, 3)} ${x.d} · ${'SunMonTueWedThuFriSat'.substr(x.dow * 3, 3)}`; };
   const nameById = id => (PEOPLE.find(p => p.slackId === id) || {}).name || id;

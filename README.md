@@ -17,6 +17,16 @@ Give [`can-jack-help/SKILL.md`](can-jack-help/SKILL.md) to your own AI assistant
 | 🧾 | [Invoice reconciliation, without the hire](projects/cfdi-reconciler/) | A 4 h/day chore brought down to minutes; CFDI parser + matcher with confidence scoring | [Live demo](https://jackzorola10.github.io/projects/cfdi-reconciler/) |
 | 🎂 | [Slack birthday bot on Airtable](projects/slack-birthday-bot/) | Replacing a paid tool with the data you already own; resilient scheduled automation | [Simulator](https://jackzorola10.github.io/projects/slack-birthday-bot/) |
 
+## Ventures
+
+| | Venture | Role |
+|---|---|---|
+| 🎙️ | [Rafónica](https://rafonica.com): creators ↔ local businesses, consent first | Founder |
+| 🏛️ | [La Consultoría](https://laconsultoriaregsan.com): health-regulatory consulting, COFEPRIS and ISO 9001 | Partner |
+| 🌙 | [LunaSurfer](https://luna-surfer.com): ticketing for independent bands | Founder and builder |
+
+[LinkedIn](https://www.linkedin.com/in/jackzorola/) · [jackzorola10@gmail.com](mailto:jackzorola10@gmail.com)
+
 ## How this repo is organized
 
 ```

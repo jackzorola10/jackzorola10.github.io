@@ -7,7 +7,7 @@
 <meta name="description" content="How a daily 4-hour invoice reconciliation chore became 15 minutes a week, without hiring. Interactive matcher and CFDI XML inspector.">
 <link rel="icon" href="../../assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/site.css">
 <style>
   .hero { padding-top: 48px; padding-bottom: 36px; }
@@ -19,16 +19,16 @@
   .bars { display: grid; gap: 10px; margin-top: 14px; }
   .bar { display: grid; grid-template-columns: 112px 1fr 70px; gap: 10px; align-items: center; font-size: 13px; }
   .bar .track { height: 22px; background: var(--surface-2); border-radius: 6px; overflow: hidden; }
-  .bar .fill { height: 100%; background: var(--accent); border-radius: 6px; transition: width .6s ease; }
-  .bar .fill.alt { background: var(--ink-2); }
+  .bar .fill { height: 100%; background: var(--grad-bar); border-radius: 6px; transition: width .6s ease; }
+  .bar .fill.alt { background: var(--pink); }
   .bar .v { font: 600 13px var(--mono); text-align: right; }
-  .insight { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; margin: 22px 0 0; font-family: var(--serif); font-size: clamp(22px, 3vw, 28px); line-height: 1.25; }
+  .insight { border-left: 3px solid var(--lilac); padding: 4px 0 4px 18px; margin: 26px 0 0; font-family: var(--serif); font-style: italic; color: var(--ink); font-size: clamp(22px, 3vw, 30px); line-height: 1.25; }
   .tools { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; }
   .tools .field { display: grid; gap: 4px; }
   .switch { display: inline-flex; gap: 8px; align-items: center; font-size: 14px; color: var(--ink-2); cursor: pointer; }
   .stack { display: flex; height: 38px; border-radius: 10px; overflow: hidden; margin: 18px 0 10px; border: 1px solid var(--line); }
   .stack div { display: grid; place-items: center; font: 600 12px var(--mono); color: #fff; min-width: 0; transition: flex-grow .5s ease; overflow: hidden; white-space: nowrap; }
-  .s-auto { background: var(--ok); } .s-review { background: var(--info); } .s-waiting { background: var(--warn); } .s-missing { background: var(--bad); } .s-unmapped { background: #8e5cf7; } .s-skipped { background: var(--muted); }
+  .s-auto { background: var(--lilac); } .s-review { background: var(--pink); } .s-waiting { background: #f5c76b; color: var(--ink) !important; } .s-missing { background: var(--ink); } .s-unmapped { background: #b8a6ff; } .s-skipped { background: #c9c7c2; color: var(--ink) !important; }
   .filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
   .filters button { cursor: pointer; }
   .filters button[aria-pressed="true"] { outline: 2px solid var(--ink); outline-offset: 1px; }
@@ -40,7 +40,7 @@
   @media (min-width: 900px) { .xml-grid { grid-template-columns: 1.1fr .9fr; } }
   .xml { max-height: 420px; font-size: 11.5px; white-space: pre; }
   .drop { border: 2px dashed var(--line); border-radius: 12px; padding: 18px; text-align: center; color: var(--muted); font-size: 14px; }
-  .drop.over { border-color: var(--accent); color: var(--accent); }
+  .drop.over { border-color: var(--lilac); color: var(--accent); background: var(--accent-soft); }
   dl.kv { display: grid; grid-template-columns: 130px 1fr; gap: 6px 12px; margin: 0; font-size: 14px; }
   dl.kv dt { color: var(--muted); font: 12px var(--mono); padding-top: 2px; }
   dl.kv dd { margin: 0; overflow-wrap: anywhere; }
@@ -53,13 +53,13 @@
 <body>
 <header class="topbar"><div class="wrap">
   <a class="brand" href="../../">Jack Zorola<span>.</span></a>
-  <nav><a href="../../#projects">Projects</a><a class="hide-sm" href="../../can-jack-help/">Can Jack help?</a><a class="hide-sm" href="https://github.com/jackzorola10/jackzorola10.github.io/tree/main/projects/cfdi-reconciler">Code</a><button class="theme-toggle" type="button"></button></nav>
+  <nav><a href="../../#projects">Projects</a><a class="hide-sm" href="../../can-jack-help/">Can Jack help?</a><a class="hide-sm" href="https://github.com/jackzorola10/jackzorola10.github.io/tree/main/projects/cfdi-reconciler">Code</a></nav>
 </div></header>
 
 <main>
 <div class="wrap hero">
   <div class="eyebrow">Case study · Operations · Automation · Regulated supply chain</div>
-  <h1>"Hire someone for this." I deleted the job instead.</h1>
+  <h1>"Hire someone for this." I <span class="hl">deleted the job</span> <em>instead.</em></h1>
   <p class="lead">At a regulated pharmaceutical distributor, matching stock received against supplier invoices took one person about four hours a day, and two managers asked for a new hire to do it. I took the task over, did it by hand until I understood it, and rebuilt it in three phases. It now takes a few minutes a day, and the hire was never needed.</p>
   <div class="stats">
     <div><div class="stat">4h → 3m</div><div class="stat-label">per day of manual work</div></div>
@@ -71,7 +71,7 @@
 
 <section><div class="wrap">
   <div class="eyebrow">Why it mattered</div>
-  <h2 style="margin:8px 0 14px">It wasn't a data-entry problem</h2>
+  <h2 style="margin:12px 0 14px">It wasn't a <em>data-entry</em> problem</h2>
   <div class="grid grid-3">
     <div class="card pad"><h3>Regulatory risk</h3><p class="muted" style="margin:6px 0 0">By law, the supplier invoice is the source document for inventory. The pharmacy and the warehouse are separate licensed entities under one tax ID: logging stock to the wrong one is a compliance error, not a typo.</p></div>
     <div class="card pad"><h3>Cash risk</h3><p class="muted" style="margin:6px 0 0">Every supplier has its own credit line and payment terms. Lose track and the account freezes. Then you can't buy medicines that only that supplier carries, and they may ask you to settle the full balance at once.</p></div>
@@ -81,7 +81,7 @@
 
 <section><div class="wrap">
   <div class="eyebrow">How it got there</div>
-  <h2 style="margin:8px 0 22px">Three phases, two insights</h2>
+  <h2 style="margin:12px 0 22px">Three phases, <em>two</em> insights</h2>
   <div class="phases">
     <div class="card phase"><h3>Connect what already existed</h3><p class="muted small">I interviewed Ops, Purchasing and Finance. Suppliers already emailed invoice copies, an alerts channel already logged every stock entry, and a BI table already held the transactions. Nobody had connected them. Email routing, labels and Zapier fed a tracker, plus a supplier matrix with credit limits and terms.</p><div class="result"><b>4 h/day → 30 min/day.</b> <span class="muted">But not every supplier emailed, attachments broke, and discrepancies left no trail.</span></div></div>
     <div class="card phase"><h3>Go to the source of truth</h3><p class="muted small"><b>Insight #1:</b> every purchase legally requires a stamped e-invoice, so <i>all</i> of them can be downloaded from the tax authority's portal with the company's credentials. I moved to Airtable with AI extraction and bulk comparison against the BI export.</p><div class="result"><b>100% coverage, bulk matching, alerts.</b> <span class="muted">But AI was billed per cell: up to ~$215/month and rising with volume.</span></div></div>
@@ -104,7 +104,7 @@
 
 <section id="matcher"><div class="wrap">
   <div class="eyebrow">Try it · synthetic data</div>
-  <h2 style="margin:8px 0 6px">The matcher, live</h2>
+  <h2 style="margin:12px 0 6px">The matcher, <em>live</em></h2>
   <p class="muted" style="margin:0 0 18px;max-width:760px">Each row is a stock receipt with the invoice number as someone typed it at the warehouse. On the other side are the invoices the tax authority has. Every supplier types its folios differently. Turn the supplier rules off and watch how much falls back to humans.</p>
   <div class="card pad">
     <div class="tools">
@@ -131,7 +131,7 @@
 
 <section id="xml"><div class="wrap">
   <div class="eyebrow">Try it · runs in your browser</div>
-  <h2 style="margin:8px 0 6px">Reading an invoice is parsing, not AI</h2>
+  <h2 style="margin:12px 0 6px">Reading an invoice is <em>parsing</em>, not AI</h2>
   <p class="muted" style="margin:0 0 18px;max-width:760px">Pick a synthetic CFDI, or drop your own .xml: it's parsed locally and never uploaded. These are the fields the matcher needs, pulled out with no OCR, no model and no per-document cost.</p>
   <div class="xml-grid">
     <div class="card pad">
