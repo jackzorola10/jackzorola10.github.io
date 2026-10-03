@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/site.css">
+<script src="../../assets/site.js"></script>
 <style>
   .hero { padding-top: 48px; padding-bottom: 32px; }
   .hero h1 { margin: 12px 0 14px; }
@@ -28,7 +29,7 @@
   .day { border: 1px solid var(--line); border-radius: 8px; padding: 6px 2px; text-align: center; font: 11px/1.25 var(--mono); color: var(--muted); background: var(--surface); position: relative; min-height: 62px; }
   .day b { display: block; font-size: 15px; color: var(--ink); font-family: var(--sans); }
   .day.weekend { background: var(--surface-2); }
-  .day.today { outline: 2px solid var(--ink); outline-offset: -2px; background: var(--lime); }
+  .day.today { outline: 2px solid var(--ink); outline-offset: -2px; background: var(--lime); color: #1a1a19; } .day.today b { color: #1a1a19; }
   .day .dot { display: block; margin: 4px auto 0; width: 8px; height: 8px; border-radius: 50%; }
   .day .dot.actual { border: 2px solid var(--pink); }
   .day .dot.cel { background: var(--pink); }
@@ -68,7 +69,7 @@
 <body>
 <header class="topbar"><div class="wrap">
   <a class="brand" href="../../">Jack Zorola<span>.</span></a>
-  <nav><a href="../../#projects">Projects</a><a class="hide-sm" href="../../can-jack-help/">Can Jack help?</a><a class="hide-sm" href="https://github.com/jackzorola10/jackzorola10.github.io/tree/main/projects/slack-birthday-bot">Code</a></nav>
+  <nav><a href="../../#projects">Projects</a><a class="hide-sm" href="../../can-jack-help/">Can Jack help?</a><a class="hide-sm" href="https://github.com/jackzorola10/jackzorola10.github.io/tree/main/projects/slack-birthday-bot">Code</a><button class="theme-toggle" type="button" aria-label="Switch theme"></button></nav>
 </div></header>
 
 <main>
@@ -141,7 +142,6 @@
 
 <footer class="footer"><div class="wrap"><span>Rewritten from a production system. All names and data are fictional.</span><a href="../../">← All projects</a></div></footer>
 
-<script src="../../assets/site.js"></script>
 <script src="src/core.js"></script>
 <script src="demo.js"></script>
 </body>

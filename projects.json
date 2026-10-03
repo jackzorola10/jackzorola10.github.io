@@ -28,6 +28,43 @@
   },
   "projects": [
     {
+      "slug": "ai-adoption-playbook",
+      "title": "AI adoption that showed up in the hiring plan",
+      "tagline": "A company-wide AI program for 30 people, and the readiness model I built after the one team that never adopted it.",
+      "summary": "Case study and tool: a five-step playbook, an interactive value × readiness prioritization model (v1, what I used, vs v2, what I'd use now), a week-one readiness checklist, and the session-brief format behind every 1:1.",
+      "kind": "Case study + tool",
+      "status": "Completed",
+      "year": 2026,
+      "tags": [
+        "ai",
+        "operations",
+        "people",
+        "data"
+      ],
+      "metrics": [
+        {
+          "value": "200+ h",
+          "label": "saved across 30 people"
+        },
+        {
+          "value": "2 of 3",
+          "label": "hiring requests withdrawn"
+        },
+        {
+          "value": "95%",
+          "label": "started with zero experience"
+        }
+      ],
+      "page": "projects/ai-adoption-playbook/",
+      "code": "https://github.com/jackzorola10/jackzorola10.github.io/tree/main/projects/ai-adoption-playbook",
+      "cover": {
+        "emoji": "🧭",
+        "from": "#7777ff",
+        "to": "#ff7792"
+      },
+      "featured": true
+    },
+    {
       "slug": "cfdi-reconciler",
       "title": "Invoice reconciliation, without the hire",
       "tagline": "4 hours a day of matching stock to supplier invoices, brought down to minutes.",

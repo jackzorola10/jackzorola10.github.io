@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/site.css">
+<script src="../../assets/site.js"></script>
 <style>
   .hero { padding-top: 48px; padding-bottom: 36px; }
   .hero h1 { margin: 12px 0 16px; max-width: 900px; }
@@ -28,7 +29,7 @@
   .switch { display: inline-flex; gap: 8px; align-items: center; font-size: 14px; color: var(--ink-2); cursor: pointer; }
   .stack { display: flex; height: 38px; border-radius: 10px; overflow: hidden; margin: 18px 0 10px; border: 1px solid var(--line); }
   .stack div { display: grid; place-items: center; font: 600 12px var(--mono); color: #fff; min-width: 0; transition: flex-grow .5s ease; overflow: hidden; white-space: nowrap; }
-  .s-auto { background: var(--lilac); } .s-review { background: var(--pink); } .s-waiting { background: #f5c76b; color: var(--ink) !important; } .s-missing { background: var(--ink); } .s-unmapped { background: #b8a6ff; } .s-skipped { background: #c9c7c2; color: var(--ink) !important; }
+  .s-auto { background: var(--lilac); } .s-review { background: var(--pink); } .s-waiting { background: #f5c76b; color: var(--ink) !important; } .s-missing { background: #1a1a19; box-shadow: inset 0 0 0 1px var(--line-2); } .s-unmapped { background: #b8a6ff; } .s-skipped { background: #c9c7c2; color: var(--ink) !important; }
   .filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
   .filters button { cursor: pointer; }
   .filters button[aria-pressed="true"] { outline: 2px solid var(--ink); outline-offset: 1px; }
@@ -53,7 +54,7 @@
 <body>
 <header class="topbar"><div class="wrap">
   <a class="brand" href="../../">Jack Zorola<span>.</span></a>
-  <nav><a href="../../#projects">Projects</a><a class="hide-sm" href="../../can-jack-help/">Can Jack help?</a><a class="hide-sm" href="https://github.com/jackzorola10/jackzorola10.github.io/tree/main/projects/cfdi-reconciler">Code</a></nav>
+  <nav><a href="../../#projects">Projects</a><a class="hide-sm" href="../../can-jack-help/">Can Jack help?</a><a class="hide-sm" href="https://github.com/jackzorola10/jackzorola10.github.io/tree/main/projects/cfdi-reconciler">Code</a><button class="theme-toggle" type="button" aria-label="Switch theme"></button></nav>
 </div></header>
 
 <main>
@@ -158,7 +159,6 @@
 
 <footer class="footer"><div class="wrap"><span>Case rewritten from a real project. The company is unnamed; all suppliers, RFCs and amounts in the demo are fictional.</span><a href="../../">← All projects</a></div></footer>
 
-<script src="../../assets/site.js"></script>
 <script src="src/cfdi.js"></script>
 <script src="src/matcher.js"></script>
 <script src="src/synthetic.js"></script>

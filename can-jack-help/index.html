@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/site.css">
+<script src="../assets/site.js"></script>
 <style>
   .hero { padding-top: 56px; padding-bottom: 40px; }
   .hero h1 { margin: 12px 0 16px; }
@@ -25,7 +26,7 @@
   .way { padding: 22px; display: grid; gap: 10px; align-content: start; } .way p { margin: 0; color: var(--ink-2); font-size: 14px; }
   .chat { display: grid; gap: 14px; }
   .bubble { padding: 16px 18px; border-radius: 14px; max-width: 760px; font-size: 15px; }
-  .bubble.q { background: var(--ink); color: #fff; justify-self: end; border-bottom-right-radius: 4px; }
+  .bubble.q { background: var(--ink); color: var(--on-ink); justify-self: end; border-bottom-right-radius: 4px; }
   .bubble.a { background: var(--surface); border: 1px solid var(--line); border-bottom-left-radius: 4px; }
   .bubble.a ul { margin: 8px 0; padding-left: 18px; } .bubble.a p { margin: 6px 0; }
   .samples { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -35,7 +36,7 @@
 <body>
 <header class="topbar"><div class="wrap">
   <a class="brand" href="../">Jack Zorola<span>.</span></a>
-  <nav><a href="../#projects">Projects</a><a class="hide-sm" href="SKILL.md">SKILL.md</a></nav>
+  <nav><a href="../#projects">Projects</a><a class="hide-sm" href="SKILL.md">SKILL.md</a><button class="theme-toggle" type="button" aria-label="Switch theme"></button></nav>
 </div></header>
 
 <main>
@@ -94,7 +95,6 @@
 
 <footer class="footer"><div class="wrap"><span>Every claim in the skill points to a case. If it isn't in the file, the AI is told to say so.</span><a href="../">← All projects</a></div></footer>
 
-<script src="../assets/site.js"></script>
 <script>
   (() => {
     const RAW = 'https://raw.githubusercontent.com/jackzorola10/jackzorola10.github.io/main/can-jack-help/SKILL.md';

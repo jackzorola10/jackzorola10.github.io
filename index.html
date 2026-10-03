@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
+<script src="assets/site.js"></script>
 <style>
   .hero { padding-top: 64px; padding-bottom: 48px; }
   .hero h1 { margin: 14px 0 18px; max-width: 920px; }
@@ -27,7 +28,7 @@
   .edge .card { padding: 18px; } .edge .n { font: 700 12px var(--mono); color: var(--accent); } .edge h3 { font-size: 16px; margin: 6px 0 6px; } .edge p { margin: 0; font-size: 14px; color: var(--ink-2); }
   .filters { display: flex; flex-wrap: wrap; gap: 6px; margin: 18px 0 20px; }
   .filters button { cursor: pointer; }
-  .filters button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .filters button[aria-pressed="true"] { background: var(--ink); color: var(--on-ink); border-color: var(--ink); }
   .projects { display: grid; gap: 18px; grid-template-columns: 1fr; }
   @media (min-width: 760px) { .projects { grid-template-columns: 1fr 1fr; } }
   .project { display: grid; grid-template-rows: auto 1fr; overflow: hidden; text-decoration: none; transition: transform .15s ease, box-shadow .15s ease; }
@@ -51,16 +52,16 @@
   .venture p { margin: 0; font-size: 15px; color: var(--soft); }
   .venture ul { margin: 0; padding-left: 18px; font-size: 14px; color: var(--ink-2); display: grid; gap: 6px; }
   .venture .stack { font: 400 11.5px var(--mono); color: var(--muted); }
-  .banner { display: grid; gap: 18px; align-items: center; grid-template-columns: 1fr; padding: 28px; background: var(--ink); color: var(--paper); border-radius: var(--radius); }
+  .banner { display: grid; gap: 18px; align-items: center; grid-template-columns: 1fr; padding: 28px; background: var(--band); color: #fff; border-radius: var(--radius); box-shadow: inset 0 0 0 1px var(--line); }
   @media (min-width: 860px) { .banner { grid-template-columns: 1fr auto; padding: 40px; } }
-  .banner h2 { color: var(--paper); } .banner p { color: color-mix(in srgb, var(--paper) 75%, transparent); margin: 8px 0 0; max-width: 640px; }
-  .banner { position: relative; overflow: hidden; } .banner::after { content: ""; position: absolute; right: -120px; top: -120px; width: 360px; height: 360px; border-radius: 50%; background: radial-gradient(circle, rgba(119,119,255,.45), rgba(119,119,255,0) 65%); } .banner > * { position: relative; z-index: 1; } .banner .btn { background: var(--lime); border-color: var(--lime); color: var(--ink); box-shadow: none; } .banner h2 em { color: var(--lime); }
+  .banner h2 { color: #fff; } .banner p { color: rgba(255, 255, 255, .72); margin: 8px 0 0; max-width: 640px; }
+  .banner { position: relative; overflow: hidden; } .banner::after { content: ""; position: absolute; right: -120px; top: -120px; width: 360px; height: 360px; border-radius: 50%; background: radial-gradient(circle, rgba(119,119,255,.45), rgba(119,119,255,0) 65%); } .banner > * { position: relative; z-index: 1; } .banner .btn { background: var(--lime); border-color: var(--lime); color: #1a1a19; box-shadow: none; } .banner h2 em { color: var(--lime); }
 </style>
 </head>
 <body>
 <header class="topbar"><div class="wrap">
   <a class="brand" href="./">Jack Zorola<span>.</span></a>
-  <nav><a href="#projects">Projects</a><a class="hide-sm" href="#ventures">Ventures</a><a href="can-jack-help/">Can Jack help?</a><a class="hide-sm" href="https://github.com/jackzorola10/jackzorola10.github.io">GitHub</a></nav>
+  <nav><a href="#projects">Projects</a><a class="hide-sm" href="#ventures">Ventures</a><a href="can-jack-help/">Can Jack help?</a><a class="hide-sm" href="https://github.com/jackzorola10/jackzorola10.github.io">GitHub</a><button class="theme-toggle" type="button" aria-label="Switch theme"></button></nav>
 </div></header>
 
 <main>
@@ -128,7 +129,6 @@
 
 <footer class="footer"><div class="wrap"><span>© Jack Zorola. Built with plain HTML, CSS and JavaScript. No trackers.</span><a href="https://github.com/jackzorola10/jackzorola10.github.io">Source on GitHub</a></div></footer>
 
-<script src="assets/site.js"></script>
 <script>
 (async () => {
   const $ = id => document.getElementById(id);
@@ -158,7 +158,7 @@
     $('grid').innerHTML = list.map(x => `
       <article class="card project">
         <a class="cover" href="${esc(x.page)}" style="background:linear-gradient(135deg, ${esc(x.cover.from)}, ${esc(x.cover.to)})" aria-label="${esc(x.title)}">
-          <span class="kind chips"><span class="chip">${esc(x.kind)}</span>${x.status ? `<span class="chip live">${esc(x.status)}</span>` : ''}</span>${x.cover.emoji}
+          <span class="kind chips"><span class="chip">${esc(x.kind)}</span>${x.status ? `<span class="chip${x.status === 'In production' ? ' live' : ''}">${esc(x.status)}</span>` : ''}</span>${x.cover.emoji}
         </a>
         <div class="body">
           <h3><a href="${esc(x.page)}" style="text-decoration:none">${esc(x.title)}</a></h3>
