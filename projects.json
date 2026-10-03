@@ -24,7 +24,8 @@
     "compliance": "Regulated ops",
     "people": "People & culture",
     "finance": "Finance ops",
-    "tooling": "Internal tools"
+    "tooling": "Internal tools",
+    "research": "Research"
   },
   "projects": [
     {
@@ -211,6 +212,42 @@
         "to": "#eaff77"
       },
       "featured": true
+    },
+    {
+      "slug": "annotated-research-library",
+      "title": "A video proves someone said it. It doesn't prove it's true.",
+      "tagline": "A method to separate data from opinion in everything you read and watch.",
+      "summary": "Template + tool: claim IDs, four claim types, a tensions log and synthesis only from independent sources. Explore a fictional library, fall into the independence trap, take the 30-second quiz and download the starter kit.",
+      "kind": "Template + tool",
+      "status": "In use",
+      "year": 2026,
+      "tags": [
+        "research",
+        "data",
+        "ai"
+      ],
+      "metrics": [
+        {
+          "value": "4",
+          "label": "claim types"
+        },
+        {
+          "value": "3+",
+          "label": "independent sources per synthesis"
+        },
+        {
+          "value": "0",
+          "label": "edits to the original"
+        }
+      ],
+      "page": "projects/annotated-research-library/",
+      "code": "https://github.com/jackzorola10/jackzorola10.github.io/tree/main/projects/annotated-research-library",
+      "cover": {
+        "emoji": "📚",
+        "from": "#7777ff",
+        "to": "#eaff77"
+      },
+      "featured": false
     },
     {
       "slug": "true-cost-of-credit",
