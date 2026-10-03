@@ -1,0 +1,9 @@
+# Rename to CODEOWNERS. The last matching pattern wins.
+# Default: global admins own anything not assigned below.
+*                 @admin-one @admin-two
+
+/People/          @people-lead
+/Finance/         @finance-lead
+/Operations/      @operations-lead
+/System/          @admin-one @admin-two
+/_Templates/      @admin-one @admin-two

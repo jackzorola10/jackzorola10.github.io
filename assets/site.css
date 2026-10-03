@@ -62,7 +62,7 @@
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
 
 * { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; overflow-x: clip; }
 [id] { scroll-margin-top: 76px; }
 body { margin: 0; background: var(--paper); color: var(--ink-2); font: 16px/1.6 var(--sans); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 ::selection { background: var(--lime); color: var(--ink); }

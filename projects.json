@@ -28,6 +28,43 @@
   },
   "projects": [
     {
+      "slug": "truck-test-os",
+      "title": "A company that survives losing anyone",
+      "tagline": "A documentation operating system with an AI judge, built so any process survives its owner leaving.",
+      "summary": "Template + tool: one master doc per area, one doc per process with a mandatory continuity section, governance by folder ownership, an append-only decision log, and an AI review protocol. Run the judge and the truck test on a fictional company, then download the starter kit.",
+      "kind": "Template + tool",
+      "status": "In production",
+      "year": 2026,
+      "tags": [
+        "operations",
+        "ai",
+        "people",
+        "tooling"
+      ],
+      "metrics": [
+        {
+          "value": "9",
+          "label": "areas with an owner"
+        },
+        {
+          "value": "28",
+          "label": "processes documented"
+        },
+        {
+          "value": "40",
+          "label": "decisions logged"
+        }
+      ],
+      "page": "projects/truck-test-os/",
+      "code": "https://github.com/jackzorola10/jackzorola10.github.io/tree/main/projects/truck-test-os",
+      "cover": {
+        "emoji": "🚚",
+        "from": "#eaff77",
+        "to": "#7777ff"
+      },
+      "featured": true
+    },
+    {
       "slug": "ai-adoption-playbook",
       "title": "AI adoption that showed up in the hiring plan",
       "tagline": "A company-wide AI program for 30 people, and the readiness model I built after the one team that never adopted it.",

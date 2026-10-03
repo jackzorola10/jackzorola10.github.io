@@ -30,6 +30,14 @@ tmp="$(mktemp -d)"; mkdir -p "$tmp/can-jack-help"; cp can-jack-help/SKILL.md "$t
 (cd "$tmp" && zip -qr can-jack-help.zip can-jack-help) && mv "$tmp/can-jack-help.zip" can-jack-help/ && echo "  ok   can-jack-help/can-jack-help.zip"
 rm -rf "$tmp"
 
+echo "== project kits"
+for k in projects/*/kit; do
+  [ -d "$k" ] || continue
+  d="$(dirname "$k")"; name="$(basename "$d")"
+  rm -f "$d/$name-kit.zip"
+  (cd "$k" && zip -qr "../$name-kit.zip" . -x '.DS_Store') && echo "  ok   $d/$name-kit.zip"
+done
+
 echo "== sensitive-data scan"
 DENY="${PORTFOLIO_DENYLIST:-$HOME/.claude/skills/portafolio/denylist.txt}"
 if [ -f "$DENY" ]; then
