@@ -14,6 +14,7 @@ Give [`can-jack-help/SKILL.md`](can-jack-help/SKILL.md) to your own AI assistant
 
 | | Project | What it shows | Try it |
 |---|---|---|---|
+| 💊 | [A new revenue line, built inside other people's hospitals](projects/hospital-pharmacy-launch/) | A 0→1 business line: 30-day launches, 8× growth, ~$200K MXN/month per clinic; ramp simulator and deal calculator | [Interactive](https://jackzorola10.github.io/projects/hospital-pharmacy-launch/) |
 | 🚚 | [A company that survives losing anyone](projects/truck-test-os/) | A documentation OS with an AI judge and a truck test; downloadable starter kit | [Interactive](https://jackzorola10.github.io/projects/truck-test-os/) |
 | 🧭 | [AI adoption that showed up in the hiring plan](projects/ai-adoption-playbook/) | A 30-person AI program, a diagnosed failure, and a value × readiness model you can play with | [Interactive](https://jackzorola10.github.io/projects/ai-adoption-playbook/) |
 | 🧾 | [Invoice reconciliation, without the hire](projects/cfdi-reconciler/) | A 4 h/day chore brought down to minutes; CFDI parser + matcher with confidence scoring | [Live demo](https://jackzorola10.github.io/projects/cfdi-reconciler/) |

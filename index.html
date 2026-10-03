@@ -154,7 +154,7 @@
     $('filters').querySelectorAll('button').forEach(b => b.addEventListener('click', () => { active = b.dataset.t; renderFilters(); renderGrid(); }));
   };
   const renderGrid = () => {
-    const list = data.projects.filter(x => active === 'all' || x.tags.includes(active)).sort((a, b) => (b.featured === true) - (a.featured === true) || b.year - a.year);
+    const list = data.projects.filter(x => active === 'all' || x.tags.includes(active)).sort((a, b) => (b.featured === true) - (a.featured === true)); // stable: keeps the curated order of projects.json
     $('grid').innerHTML = list.map(x => `
       <article class="card project">
         <a class="cover" href="${esc(x.page)}" style="background:linear-gradient(135deg, ${esc(x.cover.from)}, ${esc(x.cover.to)})" aria-label="${esc(x.title)}">

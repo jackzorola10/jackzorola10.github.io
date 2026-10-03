@@ -28,6 +28,42 @@
   },
   "projects": [
     {
+      "slug": "hospital-pharmacy-launch",
+      "title": "A new revenue line, built inside other people's hospitals",
+      "tagline": "Five hospital partners, each site live in 30 days, growth 8× the hospital's own management.",
+      "summary": "Case study + tool: the revenue-share model with an endless aisle, a 30-day launch plan with a go-live gate, a ramp simulator, a deal calculator for in-hospital pharmacies, and the point of sale I co-designed because the platform couldn't run a store.",
+      "kind": "Case study + tool",
+      "status": "Completed",
+      "year": 2024,
+      "tags": [
+        "operations",
+        "finance",
+        "compliance"
+      ],
+      "metrics": [
+        {
+          "value": "30 days",
+          "label": "room to live pharmacy"
+        },
+        {
+          "value": "8×",
+          "label": "previous management"
+        },
+        {
+          "value": "~$200K",
+          "label": "MXN/month per clinic"
+        }
+      ],
+      "page": "projects/hospital-pharmacy-launch/",
+      "code": "https://github.com/jackzorola10/jackzorola10.github.io/tree/main/projects/hospital-pharmacy-launch",
+      "cover": {
+        "emoji": "💊",
+        "from": "#ff7792",
+        "to": "#7777ff"
+      },
+      "featured": true
+    },
+    {
       "slug": "truck-test-os",
       "title": "A company that survives losing anyone",
       "tagline": "A documentation operating system with an AI judge, built so any process survives its owner leaving.",

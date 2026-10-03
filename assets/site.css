@@ -97,6 +97,10 @@ h2 { font-weight: 700; font-size: clamp(28px, 4.2vw, 42px); line-height: 1.08; l
 h3 { font-size: 18px; font-weight: 700; line-height: 1.25; letter-spacing: -.01em; }
 h1 em, h2 em, .it { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.01em; }
 .hl { white-space: nowrap; padding: 0 .04em; background-image: linear-gradient(101deg, rgba(234, 255, 119, 0) 1%, var(--lime) 2%, var(--lime) 98%, rgba(234, 255, 119, 0) 99%); background-repeat: no-repeat; background-size: 100% 42%; background-position: 0 82%; }
+/* Dark theme: light text on a lime band is unreadable, so the word itself turns lime and the
+   marker becomes a thin pen stroke underneath. Same brand gesture, legible on charcoal. */
+:root[data-theme="dark"] .hl { color: var(--lime); background-size: 100% 9%; background-position: 0 96%; background-image: linear-gradient(101deg, rgba(234, 255, 119, 0) 1%, rgba(234, 255, 119, .55) 2%, rgba(234, 255, 119, .55) 98%, rgba(234, 255, 119, 0) 99%); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hl { color: var(--lime); background-size: 100% 9%; background-position: 0 96%; background-image: linear-gradient(101deg, rgba(234, 255, 119, 0) 1%, rgba(234, 255, 119, .55) 2%, rgba(234, 255, 119, .55) 98%, rgba(234, 255, 119, 0) 99%); } }
 .lead { font-size: clamp(17px, 2vw, 19.5px); line-height: 1.55; color: var(--soft); max-width: 34em; }
 .muted { color: var(--muted); }
 .small { font-size: 14px; }
