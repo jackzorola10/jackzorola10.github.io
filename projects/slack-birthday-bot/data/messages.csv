@@ -1,0 +1,37 @@
+Code,Type,Says today,Text
+M01,Main,TRUE,Today the whole team is officially celebrating {tag} 🎂
+M02,Main,FALSE,Happy birthday {tag}! May this year bring you less email and more cake. 🍰
+M03,Main,FALSE,"Another lap around the sun, {tag}. You make the ride better for all of us. ☀️"
+M04,Main,TRUE,"Stop the meetings: today is {tag}'s birthday. 🎉"
+M05,Main,FALSE,"{tag}, happy birthday! Thanks for being the person who makes hard things look easy."
+M06,Main,FALSE,Cake emoji for {tag} and a real slice if you are near the office. 🎂
+M07,Main,FALSE,"Happy birthday {tag}! New age, same great energy. ⚡"
+M08,Main,TRUE,"Today we celebrate {tag}, the best thing that happened to this calendar day."
+M09,Main,FALSE,"{tag}, wishing you a year where every deploy is green and every inbox reaches zero. 🟢"
+M10,Main,FALSE,"Happy birthday {tag}! We are lucky to work with you. 🙌"
+M11,Main,FALSE,"Birthday alert for {tag} 🚨 Please proceed with confetti."
+M12,Main,FALSE,"{tag}, may your coffee be strong and your year even stronger. ☕"
+M13,Main,TRUE,"It's {tag}'s birthday today, so the rules are simple: be nice, bring snacks. 🍪"
+M14,Main,FALSE,"Happy birthday {tag}! Here's to a year of good surprises only. 🎁"
+M15,Main,FALSE,"{tag}, thank you for everything you bring to this team. Happy birthday! 💛"
+M16,Main,FALSE,"Level up, {tag}! 🎮 Happy birthday."
+M17,Main,FALSE,"Happy birthday {tag}. Go do something today that has nothing to do with work. 🌴"
+M18,Main,TRUE,"Today belongs to {tag}. Happy birthday! 🥳"
+M19,Main,FALSE,"{tag}, the team wishes you health, calm weeks and loud celebrations. 🎶"
+M20,Main,FALSE,"Happy birthday {tag}! You make Mondays feel like Thursdays. 📅"
+M21,Main,FALSE,"Cheers to {tag}! 🥂 Another year of being awesome, unlocked."
+M22,Main,FALSE,"{tag}, happy birthday! The office plant says hi too. 🪴"
+M23,Main,FALSE,"Happy birthday {tag}! Thanks for always saying ""let me help with that"". 🤝"
+M24,Main,TRUE,Big day today: {tag} is celebrating another year! 🎈
+M25,Main,FALSE,"{tag}, wishing you a birthday as great as your best idea this year. 💡"
+M26,Main,FALSE,"Happy birthday {tag}! Officially one year wiser, unofficially still the funniest person in the channel. 😄"
+M27,Main,FALSE,"Balloons up for {tag}! 🎈🎈🎈"
+M28,Main,FALSE,"{tag}, happy birthday from everyone who has ever been rescued by your help. 🛟"
+M29,Main,FALSE,"Happy birthday {tag}! May the year ahead be kind, bright and well-rested. 🌙"
+M30,Main,FALSE,"Let's hear it for {tag}! Happy birthday. 📣"
+W01,Weekend suffix,FALSE,"(Celebrating a little early: the big day is {date}.)"
+W02,Weekend suffix,FALSE,"(We could not wait for the weekend: the real day is {date}.)"
+L01,Late suffix,FALSE,"(A little late, but just as heartfelt.)"
+L02,Late suffix,FALSE,"(Better late than never: we owed you this one.)"
+K01,Closing,FALSE,👇 Leave your wishes in the thread
+K02,Closing,FALSE,👇 Thread is open for birthday wishes

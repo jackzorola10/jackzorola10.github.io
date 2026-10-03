@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Can Jack Help? · Jack Zorola</title>
+<meta name="description" content="Give this skill file to your AI assistant and ask whether Jack can help with your problem. Honest verdicts, real evidence, explicit gaps.">
+<link rel="icon" href="../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+  .hero { padding-top: 56px; padding-bottom: 40px; }
+  .hero h1 { margin: 12px 0 16px; }
+  .ask { display: grid; gap: 10px; margin-top: 26px; max-width: 760px; }
+  .ask-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .ask-row input { flex: 1 1 280px; font-size: 16px; padding: 13px 14px; }
+  .prompt { white-space: pre-wrap; overflow-wrap: anywhere; margin: 0; }
+  .copied { color: var(--ok); font-size: 13px; min-height: 18px; }
+  .verdicts { display: grid; gap: 12px; grid-template-columns: 1fr; }
+  @media (min-width: 760px) { .verdicts { grid-template-columns: repeat(4, 1fr); } }
+  .verdict { padding: 20px; } .verdict .v { font-size: 26px; } .verdict h3 { margin: 6px 0 4px; } .verdict p { margin: 0; font-size: 14px; color: var(--ink-2); }
+  .ways { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  @media (min-width: 860px) { .ways { grid-template-columns: repeat(3, 1fr); } }
+  .way { padding: 22px; display: grid; gap: 10px; align-content: start; } .way p { margin: 0; color: var(--ink-2); font-size: 14px; }
+  .chat { display: grid; gap: 14px; }
+  .bubble { padding: 16px 18px; border-radius: 14px; max-width: 760px; font-size: 15px; }
+  .bubble.q { background: var(--ink); color: var(--paper); justify-self: end; border-bottom-right-radius: 4px; }
+  .bubble.a { background: var(--surface); border: 1px solid var(--line); border-bottom-left-radius: 4px; }
+  .bubble.a ul { margin: 8px 0; padding-left: 18px; } .bubble.a p { margin: 6px 0; }
+  .samples { display: flex; flex-wrap: wrap; gap: 6px; }
+  .samples button { cursor: pointer; }
+</style>
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="../">Jack Zorola<span>.</span></a>
+  <nav><a href="../#projects">Projects</a><a class="hide-sm" href="SKILL.md">SKILL.md</a><button class="theme-toggle" type="button"></button></nav>
+</div></header>
+
+<main>
+<div class="wrap hero">
+  <div class="eyebrow">A skill for your AI assistant</div>
+  <h1>Can Jack help me with…?</h1>
+  <p class="lead">Don't take my word for it. Ask your own AI. This skill file gives it my experience, real numbers and honest gaps, plus rules that stop it from overselling me. You'll get a straight verdict, including "not his area".</p>
+  <div class="ask">
+    <label for="q">Your problem</label>
+    <div class="ask-row"><input id="q" value="our operating processes and P&amp;L analysis" aria-label="Your problem"><button class="btn" id="copy" type="button">Copy prompt</button></div>
+    <div class="samples"><span class="muted small" style="align-self:center">Try:</span><button type="button" class="chip">setting up a PMO</button><button type="button" class="chip">rolling out AI across the company</button><button type="button" class="chip">launching a new business line</button><button type="button" class="chip">our paid ads</button></div>
+    <pre class="prompt" id="prompt"></pre>
+    <div class="copied" id="copied" aria-live="polite"></div>
+    <p class="muted small" style="margin:0">Paste it into ChatGPT, Claude, Gemini or any assistant that can read links. If it can't, <a href="SKILL.md">open the file</a> and paste its contents instead.</p>
+  </div>
+</div>
+
+<section><div class="wrap">
+  <div class="eyebrow">What you'll get</div>
+  <h2 style="margin:8px 0 22px">Four possible verdicts</h2>
+  <div class="verdicts">
+    <div class="card verdict"><div class="v">✅</div><h3>He has done this</h3><p>A specific case where he owned this work and its result, with numbers.</p></div>
+    <div class="card verdict"><div class="v">🟡</div><h3>Adjacent</h3><p>He solved a structurally similar problem elsewhere. You'll see what transfers.</p></div>
+    <div class="card verdict"><div class="v">🟠</div><h3>Stretch</h3><p>Some parts transfer, the core is new. You'll see exactly which parts.</p></div>
+    <div class="card verdict"><div class="v">❌</div><h3>Not his area</h3><p>Said plainly. Paid media and traditional CPG S&amp;OP, for example.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="eyebrow">Example</div>
+  <h2 style="margin:8px 0 22px">What an answer looks like</h2>
+  <div class="chat">
+    <div class="bubble q">Can Jack help me with our operating processes and P&amp;L analysis?</div>
+    <div class="bubble a">
+      <p><b>🟡 Partly yes.</b> Processes: ✅. P&amp;L analysis: 🟡 adjacent.</p>
+      <ul>
+        <li>He has redesigned operations end to end, e.g. a 4-hour daily reconciliation brought to ~3 minutes, which avoided a hire [C3], and documented a whole company's processes so anyone can take them over [C6].</li>
+        <li>He owned a division's P&amp;L as it grew from zero to a standalone revenue line [C2], and built the invoice and supplier-credit visibility Finance uses for working-capital projections [C3].</li>
+        <li><b>Gap:</b> he isn't a finance specialist. He hasn't run FP&amp;A cycles, a month-end close or an audit.</li>
+      </ul>
+      <p class="muted small">Likely approach: map how your numbers are produced today, fix the operational data feeding them, and pair with your finance lead on the analysis.</p>
+    </div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="eyebrow">Other ways to use it</div>
+  <h2 style="margin:8px 0 22px">Install it once, ask anytime</h2>
+  <div class="ways">
+    <div class="card way"><h3>Claude (claude.ai)</h3><p>Download the zip, then <i>Settings → Capabilities → Skills → Upload skill</i>. Ask in any chat.</p><a class="btn" href="can-jack-help.zip" download>Download .zip</a></div>
+    <div class="card way"><h3>Claude Code</h3><p>One command installs it as a personal skill:</p><pre style="margin:0;font-size:11.5px;white-space:pre-wrap;overflow-wrap:anywhere">mkdir -p ~/.claude/skills/can-jack-help && curl -fsSL https://raw.githubusercontent.com/jackzorola10/jackzorola10.github.io/main/can-jack-help/SKILL.md -o ~/.claude/skills/can-jack-help/SKILL.md</pre></div>
+    <div class="card way"><h3>Read it yourself</h3><p>It's a plain Markdown file: snapshot, cases with numbers, skills with honest levels, how he works.</p><a class="btn ghost" href="SKILL.md">Open SKILL.md</a></div>
+  </div>
+</div></section>
+</main>
+
+<footer class="footer"><div class="wrap"><span>Every claim in the skill points to a case. If it isn't in the file, the AI is told to say so.</span><a href="../">← All projects</a></div></footer>
+
+<script src="../assets/site.js"></script>
+<script>
+  (() => {
+    const RAW = 'https://raw.githubusercontent.com/jackzorola10/jackzorola10.github.io/main/can-jack-help/SKILL.md';
+    const q = document.getElementById('q');
+    const out = document.getElementById('prompt');
+    const render = () => { out.textContent = `Read ${RAW}\nand follow its instructions to answer: Can Jack help me with ${q.value.trim() || '…'}?`; };
+    q.addEventListener('input', render);
+    document.querySelectorAll('.samples button').forEach(b => b.addEventListener('click', () => { q.value = b.textContent; render(); }));
+    document.getElementById('copy').addEventListener('click', async () => {
+      const msg = document.getElementById('copied');
+      try { await navigator.clipboard.writeText(out.textContent); msg.textContent = 'Copied. Paste it into your assistant.'; }
+      catch (e) { msg.textContent = 'Select the text above and copy it.'; }
+    });
+    render();
+  })();
+</script>
+</body>
+</html>

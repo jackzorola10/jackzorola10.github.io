@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Synthetic example for a portfolio demo. Fictional issuer, receiver and amounts. -->
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/4" xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" Version="4.0" Serie="MF" Folio="840415" Fecha="2026-09-04T10:15:00" FormaPago="99" MetodoPago="PPD" SubTotal="5116.60" Moneda="MXN" Total="5935.26" TipoDeComprobante="I" Exportacion="01" LugarExpedicion="64000">
+  <cfdi:Emisor Rfc="UDI951201Q78" Nombre="UMBRELLA DISTRIBUCION SA DE CV" RegimenFiscal="601"/>
+  <cfdi:Receptor Rfc="DEM190101XX1" Nombre="DEMO DISTRIBUIDORA SA DE CV" DomicilioFiscalReceptor="64000" RegimenFiscalReceptor="601" UsoCFDI="G01"/>
+  <cfdi:Conceptos>
+    <cfdi:Concepto ClaveProdServ="51191900" Cantidad="14" ClaveUnidad="H87" Descripcion="Omeprazole 20 mg, 14 caps" ValorUnitario="61.90" Importe="866.60" ObjetoImp="02">
+      <cfdi:Impuestos><cfdi:Traslados><cfdi:Traslado Base="866.60" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="138.66"/></cfdi:Traslados></cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="42142600" Cantidad="13" ClaveUnidad="H87" Descripcion="Sterile syringe 5 ml, box of 100" ValorUnitario="312.00" Importe="4056.00" ObjetoImp="02">
+      <cfdi:Impuestos><cfdi:Traslados><cfdi:Traslado Base="4056.00" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="648.96"/></cfdi:Traslados></cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="42311500" Cantidad="2" ClaveUnidad="H87" Descripcion="Gauze pads 10x10, pack of 100" ValorUnitario="97.00" Importe="194.00" ObjetoImp="02">
+      <cfdi:Impuestos><cfdi:Traslados><cfdi:Traslado Base="194.00" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="31.04"/></cfdi:Traslados></cfdi:Impuestos>
+    </cfdi:Concepto>
+  </cfdi:Conceptos>
+  <cfdi:Impuestos TotalImpuestosTrasladados="818.66"><cfdi:Traslados><cfdi:Traslado Base="5116.60" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="818.66"/></cfdi:Traslados></cfdi:Impuestos>
+  <cfdi:Complemento><tfd:TimbreFiscalDigital Version="1.1" UUID="08D5817E-08D5-48D5-A17E-000000000013" FechaTimbrado="2026-09-04T10:16:02" RfcProvCertif="SPR190613I52" NoCertificadoSAT="00001000000000000000"/></cfdi:Complemento>
+</cfdi:Comprobante>

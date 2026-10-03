@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Slack Birthday Bot · Jack Zorola</title>
+<meta name="description" content="A birthday bot built on Airtable and a tiny Slack app. Interactive simulator: pick a date and watch who gets celebrated.">
+<link rel="icon" href="../../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/site.css">
+<style>
+  .hero { padding-top: 48px; padding-bottom: 32px; }
+  .hero h1 { margin: 12px 0 14px; }
+  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 28px; }
+  @media (min-width: 720px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+  .sim { display: grid; gap: 16px; grid-template-columns: 1fr; }
+  @media (min-width: 980px) { .sim { grid-template-columns: 280px 1fr; } }
+  .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; }
+  .controls .field { display: grid; gap: 4px; }
+  .roster li { display: grid; grid-template-columns: 34px 1fr auto; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--line); }
+  .roster ul { list-style: none; margin: 0; padding: 0; }
+  .avatar { width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; font: 600 13px var(--sans); color: #fff; }
+  .roster .who { font-size: 14px; line-height: 1.3; }
+  .roster .who small { color: var(--muted); display: block; font: 12px var(--mono); }
+  .roster li.off { opacity: .45; }
+  .strip { display: grid; grid-template-columns: repeat(21, minmax(34px, 1fr)); gap: 4px; overflow-x: auto; padding-bottom: 6px; }
+  .day { border: 1px solid var(--line); border-radius: 8px; padding: 6px 2px; text-align: center; font: 11px/1.25 var(--mono); color: var(--muted); background: var(--surface); position: relative; min-height: 62px; }
+  .day b { display: block; font-size: 15px; color: var(--ink); font-family: var(--sans); }
+  .day.weekend { background: var(--surface-2); }
+  .day.today { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .day .dot { display: block; margin: 4px auto 0; width: 8px; height: 8px; border-radius: 50%; }
+  .day .dot.actual { border: 2px solid var(--accent); }
+  .day .dot.cel { background: var(--accent); }
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: var(--muted); margin-top: 8px; }
+  .legend i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
+  /* Slack mock */
+  .slack { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .slack-head { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--line); font-weight: 650; }
+  .slack-head .chip { margin-left: auto; }
+  .feed { padding: 8px 0; min-height: 240px; max-height: 620px; overflow-y: auto; }
+  .empty { padding: 48px 16px; text-align: center; color: var(--muted); font-size: 14px; }
+  .msg { display: grid; grid-template-columns: 40px 1fr; gap: 10px; padding: 10px 16px; animation: pop .35s ease-out; }
+  .msg:hover { background: var(--surface-2); }
+  @keyframes pop { from { opacity: 0; transform: translateY(6px); } }
+  .bot { width: 40px; height: 40px; border-radius: 9px; background: linear-gradient(135deg, #ff9a62, #d9481f); display: grid; place-items: center; font-size: 22px; }
+  .msg .meta { font-size: 14px; } .msg .meta b { margin-right: 6px; } .msg .meta .app { font: 600 10px var(--mono); background: var(--surface-2); color: var(--muted); padding: 2px 5px; border-radius: 4px; margin-right: 6px; }
+  .msg .meta time { color: var(--muted); font-size: 12px; }
+  .msg p { margin: 2px 0; font-size: 15px; }
+  .mention { background: var(--info-soft); color: var(--info); padding: 0 3px; border-radius: 4px; font-weight: 600; }
+  .gif { margin: 8px 0; width: min(340px, 100%); aspect-ratio: 16 / 10; border-radius: 10px; display: grid; place-items: center; position: relative; overflow: hidden; font-size: 64px; }
+  .gif span { animation: bounce 1.2s ease-in-out infinite; display: inline-block; }
+  .gif span:nth-child(2) { animation-delay: .15s; } .gif span:nth-child(3) { animation-delay: .3s; }
+  @keyframes bounce { 50% { transform: translateY(-14px) rotate(-6deg); } }
+  .gif figcaption { position: absolute; left: 8px; bottom: 6px; font: 11px var(--mono); color: rgba(255,255,255,.9); background: rgba(0,0,0,.35); padding: 2px 6px; border-radius: 4px; }
+  .gif .tag { position: absolute; right: 8px; top: 8px; font: 700 10px var(--mono); color: #fff; background: rgba(0,0,0,.4); padding: 2px 5px; border-radius: 4px; }
+  .thread { font-size: 13px; color: var(--info); margin-top: 4px; }
+  .daymark { display: flex; align-items: center; gap: 10px; padding: 8px 16px; font: 600 12px var(--mono); color: var(--muted); }
+  .daymark::before, .daymark::after { content: ""; flex: 1; border-top: 1px solid var(--line); }
+  .console { background: #141416; color: #d8d5cf; border-radius: 10px; padding: 12px 14px; font: 12px/1.55 var(--mono); max-height: 220px; overflow-y: auto; }
+  .console .ok { color: #6ee7a0; } .console .warn { color: #f5c06b; } .console .dim { color: #8b887f; }
+  .rule-grid { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  @media (min-width: 760px) { .rule-grid { grid-template-columns: repeat(3, 1fr); } }
+  .rule { padding: 20px; } .rule .ico { font-size: 22px; } .rule h3 { margin: 8px 0 6px; } .rule p { margin: 0; color: var(--ink-2); font-size: 14px; }
+  .toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink-2); cursor: pointer; }
+</style>
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="../../">Jack Zorola<span>.</span></a>
+  <nav><a href="../../#projects">Projects</a><a class="hide-sm" href="../../can-jack-help/">Can Jack help?</a><a class="hide-sm" href="https://github.com/jackzorola10/jackzorola10.github.io/tree/main/projects/slack-birthday-bot">Code</a><button class="theme-toggle" type="button"></button></nav>
+</div></header>
+
+<main>
+<div class="wrap hero">
+  <div class="eyebrow">Automation · Airtable · Slack API</div>
+  <h1>A birthday bot that reads the HR table</h1>
+  <p class="lead">A paid bot kept its own copy of everyone's birthday. This replaces it with one scheduled Airtable script and a tiny Slack app: one source of truth, fair message rotation, weekend logic, and self-recovery when a day fails.</p>
+  <div class="chips"><span class="chip ok">● In production</span><span class="chip">0 dependencies</span><span class="chip">16 tests</span><span class="chip">~30 min setup</span></div>
+  <div class="stats">
+    <div><div class="stat">1</div><div class="stat-label">source of truth (was 2)</div></div>
+    <div><div class="stat">30</div><div class="stat-label">messages in fair rotation</div></div>
+    <div><div class="stat">4</div><div class="stat-label">days of automatic recovery</div></div>
+    <div><div class="stat">$0</div><div class="stat-label">per month (was a paid bot)</div></div>
+  </div>
+</div>
+
+<section id="simulator"><div class="wrap">
+  <div class="eyebrow">Try it</div>
+  <h2 style="margin:8px 0 6px">Run the 8:00 AM job yourself</h2>
+  <p class="muted" style="margin:0 0 20px">Pick a date and run the job. The same tested code that runs in production decides who gets celebrated. Turn on "outage" to skip a day and watch it recover with a belated note.</p>
+
+  <div class="card pad" style="margin-bottom:16px">
+    <div class="controls">
+      <div class="field"><label for="today">Today is</label><input type="date" id="today"></div>
+      <button class="btn" id="run" type="button">▶ Run today's job</button>
+      <button class="btn ghost" id="next" type="button">Next day ›</button>
+      <button class="btn ghost" id="auto" type="button">⏩ Run 2 weeks</button>
+      <label class="toggle"><input type="checkbox" id="outage"> Simulate an outage today</label>
+      <button class="btn ghost" id="reset" type="button" style="margin-left:auto">Reset</button>
+    </div>
+    <div style="margin-top:18px">
+      <div class="strip" id="strip" aria-label="Calendar around the selected date"></div>
+      <div class="legend"><span><i style="border:2px solid var(--accent)"></i>actual birthday</span><span><i style="background:var(--accent)"></i>celebration day</span><span><i style="background:var(--surface-2);border:1px solid var(--line)"></i>weekend (no posts)</span></div>
+    </div>
+  </div>
+
+  <div class="sim">
+    <aside class="card pad roster">
+      <h3 style="margin-bottom:6px">People table</h3>
+      <p class="muted small" style="margin:0 0 8px">Fictional team. Only <b>Active</b> people are celebrated.</p>
+      <ul id="roster"></ul>
+    </aside>
+    <div class="grid">
+      <div class="slack">
+        <div class="slack-head"># general <span class="chip" id="mode-chip">LIVE</span></div>
+        <div class="feed" id="feed"><div class="empty">No posts yet. Press <b>Run today's job</b>.</div></div>
+      </div>
+      <div class="grid grid-2">
+        <div class="card pad"><h3 style="margin-bottom:10px">Run output</h3><div class="console" id="console"><span class="dim">Waiting for the first run…</span></div></div>
+        <div class="card pad"><h3 style="margin-bottom:10px">Log table</h3><div class="table-scroll"><table><thead><tr><th>Entry</th><th>Msg</th><th>Note</th></tr></thead><tbody id="log"><tr><td colspan="3" class="muted">Empty</td></tr></tbody></table></div></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="eyebrow">Design decisions</div>
+  <h2 style="margin:8px 0 22px">Small rules, big difference</h2>
+  <div class="rule-grid">
+    <div class="card rule"><div class="ico">📅</div><h3>Weekends move to Friday</h3><p>And the message names the real date. Nobody gets a party in an empty channel.</p></div>
+    <div class="card rule"><div class="ico">🔁</div><h3>Fair rotation</h3><p>Least-used message and GIF first, ties at random. Still fresh after a year.</p></div>
+    <div class="card rule"><div class="ico">🕰️</div><h3>"Today" only on the day</h3><p>Messages that say "today" are excluded from Friday and belated posts.</p></div>
+    <div class="card rule"><div class="ico">🩹</div><h3>Self-recovery</h3><p>A failed day is caught up on the next weekday with a belated note, up to 4 days back.</p></div>
+    <div class="card rule"><div class="ico">🔑</div><h3>Daily token check</h3><p><code>auth.test</code> runs every weekday, so a revoked token fails on a quiet Tuesday.</p></div>
+    <div class="card rule"><div class="ico">🧾</div><h3>Post first, log second</h3><p>If Slack fails, nothing is logged and the next run retries. No duplicates, no silent gaps.</p></div>
+  </div>
+  <p style="margin-top:24px"><a class="btn ghost" href="https://github.com/jackzorola10/jackzorola10.github.io/tree/main/projects/slack-birthday-bot">Read the code and setup guide →</a></p>
+</div></section>
+</main>
+
+<footer class="footer"><div class="wrap"><span>Rewritten from a production system. All names and data are fictional.</span><a href="../../">← All projects</a></div></footer>
+
+<script src="../../assets/site.js"></script>
+<script src="src/core.js"></script>
+<script src="demo.js"></script>
+</body>
+</html>

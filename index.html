@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jack Zorola · Operations Portfolio</title>
+<meta name="description" content="Jack Zorola: Chief of Staff and operations leader. Interactive projects and case studies on operations, automation and AI in regulated businesses.">
+<link rel="icon" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .hero { padding-top: 64px; padding-bottom: 48px; }
+  .hero h1 { margin: 14px 0 18px; max-width: 920px; }
+  .hero h1 em { color: var(--accent); }
+  .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+  .facts { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 22px; font-size: 14px; color: var(--muted); }
+  .chairs { position: relative; display: grid; grid-template-columns: repeat(7, minmax(120px, 1fr)); gap: 0; overflow-x: auto; padding: 8px 0 4px; }
+  .chair { position: relative; padding: 34px 12px 0 0; }
+  .chair::before { content: ""; position: absolute; top: 14px; left: 0; right: 0; border-top: 2px solid var(--line); }
+  .chair::after { content: ""; position: absolute; top: 8px; left: 0; width: 14px; height: 14px; border-radius: 50%; background: var(--surface); border: 2px solid var(--ink-2); }
+  .chair.now::after { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 5px var(--accent-soft); }
+  .chair b { display: block; font-size: 15px; line-height: 1.25; }
+  .chair span { font: 12px var(--mono); color: var(--muted); }
+  .chair p { margin: 6px 0 0; font-size: 13px; color: var(--ink-2); }
+  .edge { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  @media (min-width: 760px) { .edge { grid-template-columns: repeat(5, 1fr); } }
+  .edge .card { padding: 18px; } .edge .n { font: 600 12px var(--mono); color: var(--accent); } .edge h3 { font-size: 16px; margin: 6px 0 6px; } .edge p { margin: 0; font-size: 14px; color: var(--ink-2); }
+  .filters { display: flex; flex-wrap: wrap; gap: 6px; margin: 18px 0 20px; }
+  .filters button { cursor: pointer; }
+  .filters button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .projects { display: grid; gap: 18px; grid-template-columns: 1fr; }
+  @media (min-width: 760px) { .projects { grid-template-columns: 1fr 1fr; } }
+  .project { display: grid; grid-template-rows: auto 1fr; overflow: hidden; text-decoration: none; transition: transform .15s ease, box-shadow .15s ease; }
+  .project:hover { transform: translateY(-2px); color: inherit; }
+  .cover { aspect-ratio: 16 / 7; display: grid; place-items: center; font-size: 64px; position: relative; }
+  @media (max-width: 560px) { .cover { aspect-ratio: 16 / 10; font-size: 52px; } }
+  .cover .kind { position: absolute; left: 14px; top: 14px; }
+  .cover .chip { background: rgba(255,255,255,.92); color: #16161a; border: 0; }
+  .body { padding: 20px 22px 22px; display: grid; gap: 10px; align-content: start; }
+  .body h3 { font-family: var(--serif); font-weight: 400; font-size: 28px; line-height: 1.1; letter-spacing: -.01em; }
+  .body p { margin: 0; color: var(--ink-2); font-size: 15px; }
+  .metrics { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 6px; padding-top: 12px; border-top: 1px solid var(--line); }
+  .metrics div b { display: block; font: 600 18px var(--mono); } .metrics div span { font-size: 12px; color: var(--muted); }
+  .links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+  .banner { display: grid; gap: 18px; align-items: center; grid-template-columns: 1fr; padding: 28px; background: var(--ink); color: var(--paper); border-radius: var(--radius); }
+  @media (min-width: 860px) { .banner { grid-template-columns: 1fr auto; padding: 40px; } }
+  .banner h2 { color: var(--paper); } .banner p { color: color-mix(in srgb, var(--paper) 75%, transparent); margin: 8px 0 0; max-width: 640px; }
+  .banner .btn { background: var(--accent); border-color: var(--accent); color: #fff; }
+</style>
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="./">Jack Zorola<span>.</span></a>
+  <nav><a href="#projects">Projects</a><a href="can-jack-help/">Can Jack help?</a><a class="hide-sm" href="https://github.com/jackzorola10/jackzorola10.github.io">GitHub</a><button class="theme-toggle" type="button"></button></nav>
+</div></header>
+
+<main>
+<div class="wrap hero">
+  <div class="eyebrow" id="roles">Chief of Staff · Director of Operations · PMO</div>
+  <h1>I build the machine that runs the company, then <em>leave it running without me.</em></h1>
+  <p class="lead" id="pitch"></p>
+  <div class="cta">
+    <a class="btn" href="#projects">See the work</a>
+    <a class="btn ghost" href="can-jack-help/">🤖 Ask your AI: can Jack help?</a>
+    <span id="contact-links" style="display:contents"></span>
+  </div>
+  <div class="facts" id="facts"></div>
+</div>
+
+<section><div class="wrap">
+  <div class="eyebrow">Career</div>
+  <h2 style="margin:8px 0 6px">Six chairs before this one</h2>
+  <p class="muted" style="margin:0 0 26px;max-width:700px">I learned the business from every seat (design, product, delivery, operations, a new division) before running it as Chief of Staff.</p>
+  <div class="chairs">
+    <div class="chair"><span>2016</span><b>UX Designer</b><p>B2B SaaS</p></div>
+    <div class="chair"><span>2016</span><b>Product Manager</b><p>B2B SaaS</p></div>
+    <div class="chair"><span>2017</span><b>PM → COO</b><p>Industrial AI startup</p></div>
+    <div class="chair"><span>2019</span><b>Delivery Manager</b><p>Remote ops, US startup</p></div>
+    <div class="chair"><span>2020</span><b>Product Manager</b><p>Digital pharmacy</p></div>
+    <div class="chair"><span>2023</span><b>Head of Hospital Implementation</b><p>New division, 0 → 1</p></div>
+    <div class="chair now"><span>2024 – now</span><b>Chief of Staff</b><p>Regulated pharma distribution</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="eyebrow">The intersection</div>
+  <h2 style="margin:8px 0 22px">Five things that rarely come together</h2>
+  <div class="edge">
+    <div class="card"><div class="n">01</div><h3>Regulated operations</h3><p>Controlled medicines, licensed facilities, validations. Where a bad process is illegal, not just slow.</p></div>
+    <div class="card"><div class="n">02</div><h3>Every seat</h3><p>Design, product, delivery, ops and leadership, from the inside.</p></div>
+    <div class="card"><div class="n">03</div><h3>AI with numbers</h3><p>200+ hours saved across 30 people, plus a diagnosed failure.</p></div>
+    <div class="card"><div class="n">04</div><h3>Builds the tool</h3><p>Scripts, automations, self-hosted infra, a production app.</p></div>
+    <div class="card"><div class="n">05</div><h3>Mexico + remote</h3><p>LatAm operator, Spanish native, C1 English, US hours.</p></div>
+  </div>
+</div></section>
+
+<section id="projects"><div class="wrap">
+  <div class="eyebrow">Projects</div>
+  <h2 style="margin:8px 0 4px">Things I built, rewritten so you can open them</h2>
+  <p class="muted" style="margin:0;max-width:720px">Each one comes from real work. Company details are removed, the code is rewritten from scratch, and the data is fictional. Most have something you can click.</p>
+  <div class="filters" id="filters"></div>
+  <div class="projects" id="grid"><p class="muted">Loading…</p></div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="banner">
+    <div><h2>Don't take my word for it</h2><p>Give my skill file to your own AI and ask whether I can help with your problem. It's told to be honest, including "not his area".</p></div>
+    <a class="btn" href="can-jack-help/">Ask your AI →</a>
+  </div>
+</div></section>
+</main>
+
+<footer class="footer"><div class="wrap"><span>© Jack Zorola. Built with plain HTML, CSS and JavaScript. No trackers.</span><a href="https://github.com/jackzorola10/jackzorola10.github.io">Source on GitHub</a></div></footer>
+
+<script src="assets/site.js"></script>
+<script>
+(async () => {
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  let data;
+  try { data = await (await fetch('projects.json')).json(); }
+  catch (e) { $('grid').innerHTML = '<p class="muted">Could not load the project list.</p>'; return; }
+
+  const p = data.profile;
+  $('pitch').textContent = p.pitch;
+  $('roles').textContent = p.roles.join(' · ');
+  $('facts').innerHTML = [p.location, p.languages].map(x => `<span>${esc(x)}</span>`).join('');
+  const links = [];
+  if (p.links.linkedin) links.push(`<a class="btn ghost" href="${esc(p.links.linkedin)}">LinkedIn</a>`);
+  if (p.links.email) links.push(`<a class="btn ghost" href="mailto:${esc(p.links.email)}">Email</a>`);
+  $('contact-links').innerHTML = links.join('');
+
+  const used = new Set(data.projects.flatMap(x => x.tags));
+  const tags = Object.entries(data.tags).filter(([k]) => used.has(k));
+  let active = 'all';
+  const renderFilters = () => {
+    $('filters').innerHTML = [['all', `All · ${data.projects.length}`], ...tags].map(([k, label]) => `<button type="button" class="chip" data-t="${k}" aria-pressed="${active === k}">${esc(label)}</button>`).join('');
+    $('filters').querySelectorAll('button').forEach(b => b.addEventListener('click', () => { active = b.dataset.t; renderFilters(); renderGrid(); }));
+  };
+  const renderGrid = () => {
+    const list = data.projects.filter(x => active === 'all' || x.tags.includes(active)).sort((a, b) => (b.featured === true) - (a.featured === true) || b.year - a.year);
+    $('grid').innerHTML = list.map(x => `
+      <article class="card project">
+        <a class="cover" href="${esc(x.page)}" style="background:linear-gradient(135deg, ${esc(x.cover.from)}, ${esc(x.cover.to)})" aria-label="${esc(x.title)}">
+          <span class="kind chips"><span class="chip">${esc(x.kind)}</span>${x.status ? `<span class="chip">● ${esc(x.status)}</span>` : ''}</span>${x.cover.emoji}
+        </a>
+        <div class="body">
+          <h3><a href="${esc(x.page)}" style="text-decoration:none">${esc(x.title)}</a></h3>
+          <p><b>${esc(x.tagline)}</b></p>
+          <p class="small">${esc(x.summary)}</p>
+          <div class="chips">${x.tags.map(t => `<span class="chip">${esc(data.tags[t] || t)}</span>`).join('')}</div>
+          <div class="metrics">${x.metrics.map(m => `<div><b>${esc(m.value)}</b><span>${esc(m.label)}</span></div>`).join('')}</div>
+          <div class="links"><a class="btn" href="${esc(x.page)}">Open →</a>${x.code ? `<a class="btn ghost" href="${esc(x.code)}">Code</a>` : ''}</div>
+        </div>
+      </article>`).join('') || '<p class="muted">Nothing here yet.</p>';
+  };
+  renderFilters(); renderGrid();
+})();
+</script>
+</body>
+</html>

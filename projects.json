@@ -1,0 +1,57 @@
+{
+  "profile": {
+    "name": "Jack Zorola",
+    "headline": "Operations leader who builds the machine",
+    "roles": ["Chief of Staff", "Director of Operations", "PMO / Business Operations"],
+    "pitch": "Ten years building the internal machinery of growing companies: new divisions from zero, processes that survive the founder, and AI that actually lands in regulated operations, with numbers.",
+    "location": "Monterrey, Mexico · Remote · US time-zone overlap",
+    "languages": "Spanish (native) · English (C1)",
+    "links": {
+      "linkedin": "",
+      "email": "",
+      "github": "https://github.com/jackzorola10"
+    }
+  },
+  "tags": {
+    "operations": "Operations",
+    "automation": "Automation",
+    "ai": "AI",
+    "data": "Data",
+    "compliance": "Regulated ops",
+    "people": "People & culture",
+    "finance": "Finance ops",
+    "tooling": "Internal tools"
+  },
+  "projects": [
+    {
+      "slug": "cfdi-reconciler",
+      "title": "Invoice reconciliation, without the hire",
+      "tagline": "4 hours a day of matching stock to supplier invoices, brought down to minutes.",
+      "summary": "Case study and working code: a CFDI (Mexican e-invoice) parser and a goods-received ↔ invoice matcher with per-supplier folio rules, confidence scoring and a human review queue.",
+      "kind": "Case study + tool",
+      "status": "In production",
+      "year": 2025,
+      "tags": ["operations", "automation", "ai", "finance", "compliance", "data"],
+      "metrics": [{ "value": "~950 h", "label": "per year recovered" }, { "value": "$24/mo", "label": "tooling cost" }, { "value": "0", "label": "new hires" }],
+      "page": "projects/cfdi-reconciler/",
+      "code": "https://github.com/jackzorola10/jackzorola10.github.io/tree/main/projects/cfdi-reconciler",
+      "cover": { "emoji": "🧾", "from": "#d9481f", "to": "#7a2a12" },
+      "featured": true
+    },
+    {
+      "slug": "slack-birthday-bot",
+      "title": "Slack birthday bot on Airtable",
+      "tagline": "Replaced a paid bot with the HR table the team already had.",
+      "summary": "One scheduled Airtable script and a tiny Slack app: weekend logic, fair message rotation, self-recovery after a failed day, and a daily token health check. Interactive simulator included.",
+      "kind": "Tool",
+      "status": "In production",
+      "year": 2026,
+      "tags": ["automation", "people", "tooling"],
+      "metrics": [{ "value": "1", "label": "source of truth (was 2)" }, { "value": "16", "label": "tests" }, { "value": "$0", "label": "per month" }],
+      "page": "projects/slack-birthday-bot/",
+      "code": "https://github.com/jackzorola10/jackzorola10.github.io/tree/main/projects/slack-birthday-bot",
+      "cover": { "emoji": "🎂", "from": "#8e5cf7", "to": "#e8467c" },
+      "featured": false
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Invoice Reconciliation · Jack Zorola</title>
+<meta name="description" content="How a daily 4-hour invoice reconciliation chore became 15 minutes a week, without hiring. Interactive matcher and CFDI XML inspector.">
+<link rel="icon" href="../../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/site.css">
+<style>
+  .hero { padding-top: 48px; padding-bottom: 36px; }
+  .hero h1 { margin: 12px 0 16px; max-width: 900px; }
+  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 30px; }
+  @media (min-width: 760px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+  .chart-row { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 18px; }
+  @media (min-width: 860px) { .chart-row { grid-template-columns: 1fr 1fr; } }
+  .bars { display: grid; gap: 10px; margin-top: 14px; }
+  .bar { display: grid; grid-template-columns: 112px 1fr 70px; gap: 10px; align-items: center; font-size: 13px; }
+  .bar .track { height: 22px; background: var(--surface-2); border-radius: 6px; overflow: hidden; }
+  .bar .fill { height: 100%; background: var(--accent); border-radius: 6px; transition: width .6s ease; }
+  .bar .fill.alt { background: var(--ink-2); }
+  .bar .v { font: 600 13px var(--mono); text-align: right; }
+  .insight { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; margin: 22px 0 0; font-family: var(--serif); font-size: clamp(22px, 3vw, 28px); line-height: 1.25; }
+  .tools { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; }
+  .tools .field { display: grid; gap: 4px; }
+  .switch { display: inline-flex; gap: 8px; align-items: center; font-size: 14px; color: var(--ink-2); cursor: pointer; }
+  .stack { display: flex; height: 38px; border-radius: 10px; overflow: hidden; margin: 18px 0 10px; border: 1px solid var(--line); }
+  .stack div { display: grid; place-items: center; font: 600 12px var(--mono); color: #fff; min-width: 0; transition: flex-grow .5s ease; overflow: hidden; white-space: nowrap; }
+  .s-auto { background: var(--ok); } .s-review { background: var(--info); } .s-waiting { background: var(--warn); } .s-missing { background: var(--bad); } .s-unmapped { background: #8e5cf7; } .s-skipped { background: var(--muted); }
+  .filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  .filters button { cursor: pointer; }
+  .filters button[aria-pressed="true"] { outline: 2px solid var(--ink); outline-offset: 1px; }
+  tr.row { cursor: pointer; } tr.row:hover td { background: var(--surface-2); }
+  tr.detail td { background: var(--surface-2); font-size: 13px; }
+  .reasons { display: flex; flex-wrap: wrap; gap: 5px; }
+  .score { font: 700 14px var(--mono); }
+  .xml-grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+  @media (min-width: 900px) { .xml-grid { grid-template-columns: 1.1fr .9fr; } }
+  .xml { max-height: 420px; font-size: 11.5px; white-space: pre; }
+  .drop { border: 2px dashed var(--line); border-radius: 12px; padding: 18px; text-align: center; color: var(--muted); font-size: 14px; }
+  .drop.over { border-color: var(--accent); color: var(--accent); }
+  dl.kv { display: grid; grid-template-columns: 130px 1fr; gap: 6px 12px; margin: 0; font-size: 14px; }
+  dl.kv dt { color: var(--muted); font: 12px var(--mono); padding-top: 2px; }
+  dl.kv dd { margin: 0; overflow-wrap: anywhere; }
+  .principles { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  @media (min-width: 760px) { .principles { grid-template-columns: 1fr 1fr; } }
+  .principle { padding: 22px; } .principle h3 { margin: 0 0 6px; } .principle p { margin: 0; color: var(--ink-2); font-size: 15px; }
+  .rules-table td:first-child { white-space: nowrap; font-weight: 600; }
+</style>
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="../../">Jack Zorola<span>.</span></a>
+  <nav><a href="../../#projects">Projects</a><a class="hide-sm" href="../../can-jack-help/">Can Jack help?</a><a class="hide-sm" href="https://github.com/jackzorola10/jackzorola10.github.io/tree/main/projects/cfdi-reconciler">Code</a><button class="theme-toggle" type="button"></button></nav>
+</div></header>
+
+<main>
+<div class="wrap hero">
+  <div class="eyebrow">Case study · Operations · Automation · Regulated supply chain</div>
+  <h1>"Hire someone for this." I deleted the job instead.</h1>
+  <p class="lead">At a regulated pharmaceutical distributor, matching stock received against supplier invoices took one person about four hours a day, and two managers asked for a new hire to do it. I took the task over, did it by hand until I understood it, and rebuilt it in three phases. It now takes a few minutes a day, and the hire was never needed.</p>
+  <div class="stats">
+    <div><div class="stat">4h → 3m</div><div class="stat-label">per day of manual work</div></div>
+    <div><div class="stat">~950</div><div class="stat-label">hours a year recovered, from one workflow</div></div>
+    <div><div class="stat">100%</div><div class="stat-label">invoice coverage, no longer dependent on suppliers emailing them</div></div>
+    <div><div class="stat">$24</div><div class="stat-label">per month in tooling (peak was ~9× that)</div></div>
+  </div>
+</div>
+
+<section><div class="wrap">
+  <div class="eyebrow">Why it mattered</div>
+  <h2 style="margin:8px 0 14px">It wasn't a data-entry problem</h2>
+  <div class="grid grid-3">
+    <div class="card pad"><h3>Regulatory risk</h3><p class="muted" style="margin:6px 0 0">By law, the supplier invoice is the source document for inventory. The pharmacy and the warehouse are separate licensed entities under one tax ID: logging stock to the wrong one is a compliance error, not a typo.</p></div>
+    <div class="card pad"><h3>Cash risk</h3><p class="muted" style="margin:6px 0 0">Every supplier has its own credit line and payment terms. Lose track and the account freezes. Then you can't buy medicines that only that supplier carries, and they may ask you to settle the full balance at once.</p></div>
+    <div class="card pad"><h3>Headcount</h3><p class="muted" style="margin:6px 0 0">Thousands of orders a month, and B2B orders with hundreds of lines. The Operations and Regulatory leads asked for a dedicated hire. Instead of approving it, I took the task myself to understand it from the inside.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="eyebrow">How it got there</div>
+  <h2 style="margin:8px 0 22px">Three phases, two insights</h2>
+  <div class="phases">
+    <div class="card phase"><h3>Connect what already existed</h3><p class="muted small">I interviewed Ops, Purchasing and Finance. Suppliers already emailed invoice copies, an alerts channel already logged every stock entry, and a BI table already held the transactions. Nobody had connected them. Email routing, labels and Zapier fed a tracker, plus a supplier matrix with credit limits and terms.</p><div class="result"><b>4 h/day → 30 min/day.</b> <span class="muted">But not every supplier emailed, attachments broke, and discrepancies left no trail.</span></div></div>
+    <div class="card phase"><h3>Go to the source of truth</h3><p class="muted small"><b>Insight #1:</b> every purchase legally requires a stamped e-invoice, so <i>all</i> of them can be downloaded from the tax authority's portal with the company's credentials. I moved to Airtable with AI extraction and bulk comparison against the BI export.</p><div class="result"><b>100% coverage, bulk matching, alerts.</b> <span class="muted">But AI was billed per cell: up to ~$215/month and rising with volume.</span></div></div>
+    <div class="card phase"><h3>AI as the engineer, not the infrastructure</h3><p class="muted small"><b>Insight #2:</b> every Mexican invoice also exists as structured XML. There's nothing to "read". I used Claude to write the parsing and matching scripts, and plain scripts run them for almost nothing. I treated the AI bill as a trigger to re-architect, not as a cost to absorb.</p><div class="result"><b>3 min/day for an intern · $24/month.</b> <span class="muted">Unchanged six months later.</span></div></div>
+  </div>
+
+  <div class="chart-row">
+    <div class="card pad">
+      <h3>Hours per week on the task</h3>
+      <div class="bars" id="hours"></div>
+    </div>
+    <div class="card pad">
+      <h3>Monthly tooling cost (USD)</h3>
+      <div class="bars" id="cost"></div>
+    </div>
+  </div>
+  <p class="insight">The headline isn't the hours saved. It's that a hiring request was withdrawn because the work stopped existing.</p>
+  <p class="muted small" style="margin-top:12px">Self-measured, which is worth saying out loud, and stable six months after handover. Ops got discrepancy alerts, Regulatory got traceability, Finance got a working-capital projection, Purchasing got visibility of supplier credit limits.</p>
+</div></section>
+
+<section id="matcher"><div class="wrap">
+  <div class="eyebrow">Try it · synthetic data</div>
+  <h2 style="margin:8px 0 6px">The matcher, live</h2>
+  <p class="muted" style="margin:0 0 18px;max-width:760px">Each row is a stock receipt with the invoice number as someone typed it at the warehouse. On the other side are the invoices the tax authority has. Every supplier types its folios differently. Turn the supplier rules off and watch how much falls back to humans.</p>
+  <div class="card pad">
+    <div class="tools">
+      <div class="field"><label for="seed">Dataset</label><select id="seed"><option value="7">Week A · 120 receipts</option><option value="21">Week B · 120 receipts</option><option value="99">Month · 400 receipts</option></select></div>
+      <label class="switch"><input type="checkbox" id="rules" checked> Supplier folio rules</label>
+      <span class="chip" id="accuracy"></span>
+    </div>
+    <div class="stack" id="stack"></div>
+    <div class="chips" id="legend"></div>
+  </div>
+
+  <div class="card pad" style="margin-top:16px">
+    <div class="filters" id="filters"></div>
+    <div class="table-scroll"><table><thead><tr><th>Receipt</th><th>Supplier</th><th>Typed folio</th><th>Best invoice</th><th>Score</th><th>Status</th></tr></thead><tbody id="rows"></tbody></table></div>
+    <p class="muted small" id="more" style="margin:10px 0 0"></p>
+  </div>
+
+  <div class="card pad" style="margin-top:16px">
+    <h3 style="margin-bottom:10px">The supplier rules, learned one supplier at a time</h3>
+    <div class="table-scroll"><table class="rules-table"><thead><tr><th>Supplier</th><th>How their folios get mangled</th><th>Rule</th></tr></thead><tbody id="rulebook"></tbody></table></div>
+    <p class="muted small" style="margin:12px 0 0">Scoring: folio match 100 (+20 same supplier) · date 0–40 · total 0–40 · quantity 0–20. <b>≥160 links automatically, 60–159 goes to a person.</b> A folio match alone can never auto-link, and decisions a person already made are never overwritten.</p>
+  </div>
+</div></section>
+
+<section id="xml"><div class="wrap">
+  <div class="eyebrow">Try it · runs in your browser</div>
+  <h2 style="margin:8px 0 6px">Reading an invoice is parsing, not AI</h2>
+  <p class="muted" style="margin:0 0 18px;max-width:760px">Pick a synthetic CFDI, or drop your own .xml: it's parsed locally and never uploaded. These are the fields the matcher needs, pulled out with no OCR, no model and no per-document cost.</p>
+  <div class="xml-grid">
+    <div class="card pad">
+      <div class="tools" style="margin-bottom:12px"><div class="field"><label for="sample">Sample</label><select id="sample"><option value="invoice-northwind.xml">Northwind Pharma</option><option value="invoice-globex.xml">Globex Supply</option><option value="invoice-umbrella.xml">Umbrella Distribution</option></select></div></div>
+      <div class="drop" id="drop">Drop a CFDI .xml here, or <label style="color:var(--accent);cursor:pointer;font-size:14px"><input type="file" id="file" accept=".xml,text/xml" hidden>choose a file</label></div>
+      <pre class="xml" id="xmltext" style="margin-top:12px"></pre>
+    </div>
+    <div class="card pad"><h3 style="margin-bottom:12px">Parsed</h3><dl class="kv" id="parsed"></dl><div class="table-scroll" style="margin-top:14px"><table><thead><tr><th>Item</th><th>Qty</th><th>Amount</th></tr></thead><tbody id="items"></tbody></table></div></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="eyebrow">What I'd carry to any operation</div>
+  <h2 style="margin:8px 0 22px">Principles</h2>
+  <div class="principles">
+    <div class="card principle"><h3>Do it by hand before you automate it</h3><p>The useful assets (email copies, an alerts channel, a BI table) only showed up once I did the job myself and asked three teams how they touched it.</p></div>
+    <div class="card principle"><h3>Find the source the law already guarantees</h3><p>Chasing suppliers for documents is fragile. The tax authority already holds every invoice, in a standard format.</p></div>
+    <div class="card principle"><h3>Use AI to build the system, not to be the system</h3><p>Per-document model costs scale with volume. A script written with AI's help scales for free. Cost is a design signal.</p></div>
+    <div class="card principle"><h3>Machines suggest, people decide</h3><p>Confidence thresholds, a review queue, and human decisions the matcher never overwrites. Trust is what makes people actually stop checking by hand.</p></div>
+  </div>
+  <p style="margin-top:24px"><a class="btn ghost" href="https://github.com/jackzorola10/jackzorola10.github.io/tree/main/projects/cfdi-reconciler">Read the code →</a></p>
+</div></section>
+</main>
+
+<footer class="footer"><div class="wrap"><span>Case rewritten from a real project. The company is unnamed; all suppliers, RFCs and amounts in the demo are fictional.</span><a href="../../">← All projects</a></div></footer>
+
+<script src="../../assets/site.js"></script>
+<script src="src/cfdi.js"></script>
+<script src="src/matcher.js"></script>
+<script src="src/synthetic.js"></script>
+<script src="demo.js"></script>
+</body>
+</html>

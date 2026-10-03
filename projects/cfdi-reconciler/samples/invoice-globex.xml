@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Synthetic example for a portfolio demo. Fictional issuer, receiver and amounts. -->
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/4" xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" Version="4.0" Serie="AA" Folio="22491" Fecha="2026-09-08T10:15:00" FormaPago="99" MetodoPago="PPD" SubTotal="2004.80" Moneda="MXN" Total="2325.57" TipoDeComprobante="I" Exportacion="01" LugarExpedicion="64000">
+  <cfdi:Emisor Rfc="GSU110422B93" Nombre="GLOBEX SUPPLY SA DE CV" RegimenFiscal="601"/>
+  <cfdi:Receptor Rfc="DEM190101XX1" Nombre="DEMO DISTRIBUIDORA SA DE CV" DomicilioFiscalReceptor="64000" RegimenFiscalReceptor="601" UsoCFDI="G01"/>
+  <cfdi:Conceptos>
+    <cfdi:Concepto ClaveProdServ="51211800" Cantidad="17" ClaveUnidad="H87" Descripcion="Metformin 850 mg, 30 tabs" ValorUnitario="52.80" Importe="897.60" ObjetoImp="02">
+      <cfdi:Impuestos><cfdi:Traslados><cfdi:Traslado Base="897.60" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="143.62"/></cfdi:Traslados></cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="51161800" Cantidad="8" ClaveUnidad="H87" Descripcion="Salbutamol inhaler 100 mcg" ValorUnitario="138.40" Importe="1107.20" ObjetoImp="02">
+      <cfdi:Impuestos><cfdi:Traslados><cfdi:Traslado Base="1107.20" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="177.15"/></cfdi:Traslados></cfdi:Impuestos>
+    </cfdi:Concepto>
+  </cfdi:Conceptos>
+  <cfdi:Impuestos TotalImpuestosTrasladados="320.77"><cfdi:Traslados><cfdi:Traslado Base="2004.80" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="320.77"/></cfdi:Traslados></cfdi:Impuestos>
+  <cfdi:Complemento><tfd:TimbreFiscalDigital Version="1.1" UUID="1719B3F6-1719-4719-A3F6-000000000005" FechaTimbrado="2026-09-08T10:16:02" RfcProvCertif="SPR190613I52" NoCertificadoSAT="00001000000000000000"/></cfdi:Complemento>
+</cfdi:Comprobante>
