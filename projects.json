@@ -138,6 +138,42 @@
       "featured": true
     },
     {
+      "slug": "two-axis-pipeline",
+      "title": "The nightly job that could erase weeks of sales work",
+      "tagline": "Rafónica's data model: robots own the data, people own the relationship, privacy is checked before every write.",
+      "summary": "Case study + tool from my own startup: a two-axis state model, gates written as filters, consent-first inventory and a fail-closed privacy exclusion. Play the one-field vs two-axis simulator, send a privacy request, and see why reach uses the median.",
+      "kind": "Case study + tool",
+      "status": "In production",
+      "year": 2026,
+      "tags": [
+        "data",
+        "tooling",
+        "compliance"
+      ],
+      "metrics": [
+        {
+          "value": "2",
+          "label": "axes, never mixed"
+        },
+        {
+          "value": "0",
+          "label": "scripts that write relationships"
+        },
+        {
+          "value": "Median",
+          "label": "not mean"
+        }
+      ],
+      "page": "projects/two-axis-pipeline/",
+      "code": "https://github.com/jackzorola10/jackzorola10.github.io/tree/main/projects/two-axis-pipeline",
+      "cover": {
+        "emoji": "🎙️",
+        "from": "#7777ff",
+        "to": "#ff7792"
+      },
+      "featured": false
+    },
+    {
       "slug": "cfdi-reconciler",
       "title": "Invoice reconciliation, without the hire",
       "tagline": "4 hours a day of matching stock to supplier invoices, brought down to minutes.",
@@ -226,7 +262,8 @@
         "Published privacy notice with a working opt-out, and encrypted off-site backups with a tested restore"
       ],
       "stack": "Python · Baserow (self-hosted) · Tailscale · Vercel",
-      "accent": "#7777ff"
+      "accent": "#7777ff",
+      "case": "projects/two-axis-pipeline/"
     },
     {
       "name": "La Consultoría",

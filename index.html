@@ -178,7 +178,7 @@
       <p>${esc(v.what)}</p>
       <ul>${v.built.map(b => `<li>${esc(b)}</li>`).join('')}</ul>
       <div class="stack">${esc(v.stack)}</div>
-      <div><a class="btn ghost" href="${esc(v.url)}" target="_blank" rel="noopener">${esc(v.url.replace('https://', ''))} ↗</a></div>
+      <div class="links"><a class="btn ghost" href="${esc(v.url)}" target="_blank" rel="noopener">${esc(v.url.replace('https://', ''))} ↗</a>${v.case ? `<a class="btn ghost" href="${esc(v.case)}">Case study →</a>` : ''}</div>
     </article>`).join('');
 })();
 </script>

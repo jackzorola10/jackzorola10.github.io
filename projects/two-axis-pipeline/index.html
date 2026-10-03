@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two-Axis Pipeline · Jack Zorola</title>
+<meta name="description" content="The data model behind Rafónica: robots own the data state, people own the relationship state, gates are filters, and privacy is checked before every write. Interactive simulator.">
+<link rel="icon" href="../../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/site.css">
+<script src="../../assets/site.js"></script>
+<style>
+  .hero { padding-top: 48px; padding-bottom: 36px; }
+  .hero h1 { margin: 12px 0 16px; max-width: 940px; }
+  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 30px; }
+  @media (min-width: 760px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+  .about { display: grid; gap: 18px; grid-template-columns: 1fr; align-items: center; padding: 28px; }
+  @media (min-width: 900px) { .about { grid-template-columns: 1.3fr .7fr; padding: 36px; } }
+  .about > * { min-width: 0; }
+  .lanes { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  @media (min-width: 900px) { .lanes { grid-template-columns: 1fr 1fr; } }
+  .lanes > * { min-width: 0; }
+  .lane { padding: 22px; }
+  .steps { display: grid; gap: 6px; margin: 12px 0 0; padding: 0; list-style: none; counter-reset: s; }
+  .steps li { display: flex; gap: 10px; align-items: center; padding: 9px 12px; border-radius: 10px; background: var(--surface-2); font-size: 14px; }
+  .steps li::before { counter-increment: s; content: counter(s); font: 700 11px var(--mono); color: var(--muted); width: 16px; }
+  .steps li.key { background: var(--accent-soft); color: var(--ink); font-weight: 600; }
+  .meet { margin-top: 14px; padding: 18px 22px; border-radius: var(--radius); background: var(--band); color: #fff; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+  .meet b { color: var(--lime); }
+  .layers { display: grid; gap: 10px; }
+  .layer { display: grid; grid-template-columns: 150px 1fr; gap: 14px; padding: 18px 20px; align-items: center; }
+  @media (max-width: 600px) { .layer { grid-template-columns: 1fr; gap: 6px; } }
+  .layer b { color: var(--ink); } .layer p { margin: 0; font-size: 14.5px; color: var(--soft); }
+  .layer.asset { box-shadow: inset 4px 0 0 var(--lilac), var(--shadow); }
+  .sbs { display: grid; gap: 16px; grid-template-columns: 1fr; }
+  @media (min-width: 900px) { .sbs { grid-template-columns: 1fr 1fr; } }
+  .sbs > * { min-width: 0; }
+  .events { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 16px; }
+  .events button { display: inline-flex; gap: 6px; align-items: center; }
+  .events .who { font: 700 10px var(--mono); text-transform: uppercase; letter-spacing: .06em; padding: 2px 6px; border-radius: 6px; background: var(--surface-2); color: var(--muted); }
+  .events .robot .who { background: var(--accent-soft); color: var(--accent); }
+  .model h3 { margin-bottom: 4px; }
+  .field { display: grid; gap: 6px; margin-top: 14px; }
+  .field .lbl { font: 700 11px var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+  .track-states { display: flex; flex-wrap: wrap; gap: 5px; }
+  .track-states span { font: 400 11.5px var(--mono); padding: 5px 8px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--muted); }
+  .track-states span.on { background: var(--ink); border-color: var(--ink); color: var(--on-ink); font-weight: 700; }
+  .track-states.rel span.on { background: var(--lime); border-color: var(--lime); color: #1a1a19; }
+  .log { margin-top: 16px; font: 12.5px/1.6 var(--mono); max-height: 180px; overflow-y: auto; padding: 12px; border-radius: 12px; background: var(--surface-2); }
+  .log .bad { color: var(--bad); font-weight: 700; } .log .ok { color: var(--ok); } .log .no { color: var(--warn); }
+  .model.flash { animation: flash .8s ease; }
+  @keyframes flash { 0% { box-shadow: 0 0 0 0 var(--pink); } 30% { box-shadow: 0 0 0 6px var(--pink); } 100% { box-shadow: 0 0 0 0 transparent; } }
+  .gates-head { display: grid; gap: 10px; grid-template-columns: 1fr; margin-bottom: 14px; }
+  @media (min-width: 760px) { .gates-head { grid-template-columns: 1fr 1fr; } }
+  .gate-card { padding: 16px 18px; } .gate-card b { color: var(--ink); } .gate-card p { margin: 4px 0 0; font: 400 12px/1.5 var(--mono); color: var(--muted); }
+  .gate-card .count { font: 800 26px var(--sans); color: var(--ink); }
+  table.creators td, table.creators th { white-space: nowrap; }
+  tr.excluded td { opacity: .45; text-decoration: line-through; }
+  tr.excluded td:last-child { opacity: 1; text-decoration: none; }
+  .yes { color: var(--ok); font-weight: 700; } .nope { color: var(--muted); }
+  .add-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 16px; }
+  .add-row input { flex: 1 1 220px; }
+  .vbars { display: flex; align-items: flex-end; gap: 6px; height: 220px; padding: 10px 0 0; border-bottom: 1px solid var(--line-2); position: relative; }
+  .vbars .b { flex: 1; border-radius: 6px 6px 0 0; background: var(--lilac); position: relative; min-height: 3px; }
+  .vbars .b.pinned { background: repeating-linear-gradient(45deg, var(--surface-2), var(--surface-2) 4px, var(--line-2) 4px, var(--line-2) 8px); }
+  .vbars .b.viral { background: var(--pink); }
+  .vbars .line { position: absolute; left: 0; right: 0; border-top: 2px dashed; }
+  .vbars .line span { position: absolute; right: 0; top: -20px; font: 700 11px var(--mono); background: var(--surface); padding: 0 4px; }
+  .rules { display: grid; gap: 10px; grid-template-columns: 1fr; }
+  @media (min-width: 860px) { .rules { grid-template-columns: repeat(3, 1fr); } }
+  .rule { padding: 20px; } .rule .n { font: 700 12px var(--mono); color: var(--accent); } .rule h3 { font-size: 16px; margin: 6px 0 6px; } .rule p { margin: 0; font-size: 14px; color: var(--soft); }
+</style>
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="../../">Jack Zorola<span>.</span></a>
+  <nav><a href="../../#projects">Projects</a><a class="hide-sm" href="../../#ventures">Ventures</a><a class="hide-sm" href="https://github.com/jackzorola10/jackzorola10.github.io/tree/main/projects/two-axis-pipeline">Code</a><button class="theme-toggle" type="button" aria-label="Switch theme"></button></nav>
+</div></header>
+
+<main>
+<div class="wrap hero">
+  <div class="eyebrow">Case study + tool · Data model · Marketplaces · Privacy by design</div>
+  <h1>The nightly job that could <span class="hl">erase weeks</span> of sales work</h1>
+  <p class="lead">At Rafónica, robots measure creators every night and a person builds every relationship. Store both in one "status" field and the robot overwrites the person. So every record has two states that never mix: the data, owned by automation, and the relationship, owned by a human.</p>
+  <div class="stats">
+    <div><div class="stat">2</div><div class="stat-label">independent states per creator and per business</div></div>
+    <div><div class="stat">0</div><div class="stat-label">scripts allowed to write a relationship</div></div>
+    <div><div class="stat">1</div><div class="stat-label">privacy exclusion list, checked before every write</div></div>
+    <div><div class="stat">Median</div><div class="stat-label">not mean: one viral video doesn't define a creator</div></div>
+  </div>
+</div>
+
+<section><div class="wrap">
+  <div class="card about">
+    <div>
+      <div class="eyebrow">My startup</div>
+      <h2 style="margin:12px 0 10px">What <em>Rafónica</em> does</h2>
+      <p class="muted" style="margin:0">Rafónica connects nano and micro content creators with local businesses that have never done influencer marketing, so both sides know exactly what they are buying and selling: real reach instead of follower counts, clear agreements instead of DMs, and consent before anyone is offered to a brand.</p>
+    </div>
+    <div><a class="btn" href="https://rafonica.com" target="_blank" rel="noopener">rafonica.com ↗</a></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="eyebrow">The system</div>
+  <h2 style="margin:12px 0 18px">Two pipelines that meet at <em>one</em> point</h2>
+  <div class="lanes">
+    <div class="card lane"><span class="chip">Supply · creators</span>
+      <ol class="steps"><li>Discover candidates</li><li>Capture and measure</li><li>Find contact channels</li><li>Refresh on a schedule</li><li>Outreach</li><li class="key">Consent and signed agreement</li></ol></div>
+    <div class="card lane"><span class="chip">Demand · businesses</span>
+      <ol class="steps"><li>Discover businesses from open data</li><li>Enrich and find who decides</li><li>Outreach</li><li class="key">Interested business</li></ol></div>
+  </div>
+  <div class="meet"><b>Both meet at matching</b><span>A proposal pairs a business with signed creators whose audience fits. Then the campaign runs, and the same scheduled snapshots measure the result.</span></div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="eyebrow">Architecture</div>
+  <h2 style="margin:12px 0 18px">The scraper isn't the asset. The <em>directory</em> is.</h2>
+  <div class="layers">
+    <div class="card layer"><b>Capture layer</b><p>Disposable and isolated behind one interface. Platforms change and capture breaks: when it does, one file gets repaired, not the system.</p></div>
+    <div class="card layer asset"><b>Intelligence layer</b><p>The real asset: reach scoring, locality, niche, contactability, matching, history over time, detection of bought followers.</p></div>
+    <div class="card layer"><b>Business layer</b><p>A self-hosted database: the creator directory, candidates, snapshots and deals, plus a separate CRM of businesses, contacts and interactions.</p></div>
+  </div>
+</div></section>
+
+<section id="sim"><div class="wrap">
+  <div class="eyebrow">Try it · side by side</div>
+  <h2 style="margin:12px 0 6px">One field vs. <em>two</em> axes</h2>
+  <p class="muted" style="margin:0 0 16px;max-width:780px">Same fictional creator, same events, two data models. Build a relationship, then let the nightly refresh run.</p>
+  <div class="events" id="events"></div>
+  <div class="sbs">
+    <div class="card pad model" id="legacy"></div>
+    <div class="card pad model" id="twoaxis"></div>
+  </div>
+  <p style="margin-top:14px"><button class="btn ghost" type="button" id="reset-sim">Reset</button> <button class="btn ghost" type="button" id="story">▶ Play the story</button></p>
+</div></section>
+
+<section id="gates"><div class="wrap">
+  <div class="eyebrow">Try it · gates and privacy</div>
+  <h2 style="margin:12px 0 6px">If it can't be a filter, it isn't a <em>gate</em></h2>
+  <p class="muted" style="margin:0 0 16px;max-width:780px">Twelve fictional creators. Each gate is an exact rule, so "who's ready" has one answer. Send a privacy request for anyone: they leave every gate, nothing writes to their record again, and the system refuses to add them back.</p>
+  <div class="gates-head" id="gate-cards"></div>
+  <div class="card pad"><div class="table-scroll"><table class="creators"><thead><tr><th>Creator</th><th>Data</th><th>Relationship</th><th>Contact</th><th>Last post</th><th>Flag</th><th>Outreach</th><th>Sellable</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
+    <div class="add-row"><input id="add-handle" placeholder="Try adding a handle, e.g. @ring.side.mx" aria-label="Handle to add"><button class="btn ghost" type="button" id="add">Add candidate</button><span class="small" id="add-msg" aria-live="polite"></span></div>
+  </div>
+</div></section>
+
+<section id="reach"><div class="wrap">
+  <div class="eyebrow">Try it · measuring reach</div>
+  <h2 style="margin:12px 0 6px">The mean lies, the <em>median</em> doesn't</h2>
+  <p class="muted" style="margin:0 0 16px;max-width:780px">A fictional creator's last twelve videos. One went viral, one is pinned (pinned videos are always excluded: they collect views for months). Compare the reach each method would sell to a business.</p>
+  <div class="card pad"><div class="vbars" id="vbars"></div><div class="readout" id="reach-out" style="display:flex;flex-wrap:wrap;gap:22px;margin-top:16px"></div></div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="eyebrow">Rules between processes</div>
+  <h2 style="margin:12px 0 22px">So automation <em>never</em> overwrites people</h2>
+  <div class="rules">
+    <div class="card rule"><div class="n">01</div><h3>Scripts never write a relationship</h3><p>Only a person, or an approved queue, moves a creator or a business through the conversation.</p></div>
+    <div class="card rule"><div class="n">02</div><h3>People never write the data state</h3><p>If a measurement is wrong, fix the script or leave a note. Don't fake the state.</p></div>
+    <div class="card rule"><div class="n">03</div><h3>Enrichment never overwrites</h3><p>Automatic contact discovery only fills empty fields. A contact verified by hand always wins.</p></div>
+    <div class="card rule"><div class="n">04</div><h3>Privacy first, every time</h3><p>Every intake and capture checks the exclusion list before writing anything.</p></div>
+    <div class="card rule"><div class="n">05</div><h3>Fail closed</h3><p>If the exclusion list can't be read, nothing runs. Better a stopped pipeline than re-contacting someone who asked to leave.</p></div>
+    <div class="card rule"><div class="n">06</div><h3>Consent is the inventory</h3><p>Nobody is offered to a business without a signed agreement, however good their numbers look.</p></div>
+  </div>
+  <p style="margin-top:24px"><a class="btn" href="https://rafonica.com" target="_blank" rel="noopener">Visit rafonica.com ↗</a> <a class="btn ghost" href="https://github.com/jackzorola10/jackzorola10.github.io/tree/main/projects/two-axis-pipeline">Read the code →</a></p>
+</div></section>
+</main>
+
+<footer class="footer"><div class="wrap"><span>The data model of Rafónica, my own startup. Creators, handles and numbers in the demos are fictional.</span><a href="../../">← All projects</a></div></footer>
+
+<script src="src/pipeline.js"></script>
+<script src="src/creators.js"></script>
+<script src="demo.js"></script>
+</body>
+</html>
