@@ -213,6 +213,42 @@
       "featured": true
     },
     {
+      "slug": "true-cost-of-credit",
+      "title": "The most expensive debt is often a mechanism, not a loan",
+      "tagline": "Turn any credit mechanism into its effective annual rate, and rank them.",
+      "summary": "Tool: payroll advances, rolling a card through a terminal, revolving balances, installment loans, 'interest-free' months and line fees, each converted to one comparable annual rate with VAT included. Build your debt ladder and see how fast breaking a rolling advance pays for itself.",
+      "kind": "Tool",
+      "status": "Live",
+      "year": 2026,
+      "tags": [
+        "finance",
+        "data",
+        "tooling"
+      ],
+      "metrics": [
+        {
+          "value": "6",
+          "label": "mechanisms"
+        },
+        {
+          "value": "EAR",
+          "label": "one comparable rate"
+        },
+        {
+          "value": "0",
+          "label": "data leaves the browser"
+        }
+      ],
+      "page": "projects/true-cost-of-credit/",
+      "code": "https://github.com/jackzorola10/jackzorola10.github.io/tree/main/projects/true-cost-of-credit",
+      "cover": {
+        "emoji": "💸",
+        "from": "#eaff77",
+        "to": "#ff7792"
+      },
+      "featured": false
+    },
+    {
       "slug": "slack-birthday-bot",
       "title": "Slack birthday bot on Airtable",
       "tagline": "Replaced a paid bot with the HR table the team already had.",

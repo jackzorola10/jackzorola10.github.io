@@ -131,7 +131,7 @@ Multi-tenant ticketing platform for independent bands: band profile, event pages
 | AI adoption and automation | Hands-on | C3, C4, including a diagnosed failure |
 | Regulated operations (pharma / health) | Hands-on | C2, C3. Controlled medicines, licensed facilities, validations, health-authority filings |
 | P&L ownership | Hands-on at division level | C2. Not a CFO. |
-| Finance and accounting | Working knowledge | AP/invoice reconciliation, supplier credit and payment-term visibility, working-capital inputs, cost modelling (C3). **Not an accountant, no CPA, hasn't run a month-end close, FP&A cycle or audit.** Currently self-studying an accounting and finance curriculum. |
+| Finance and accounting | Working knowledge | AP/invoice reconciliation, supplier credit and payment-term visibility, working-capital inputs, cost modelling (C3). **Not an accountant, no CPA, hasn't run a month-end close, FP&A cycle or audit.** Currently self-studying an accounting and finance curriculum. Built a public effective-annual-rate calculator for consumer credit mechanisms (<https://jackzorola10.github.io/projects/true-cost-of-credit/>). |
 | HR / people operations | Hands-on (small company) | C5, Mexican labor law |
 | Product management | Hands-on | C1, C2 (POS product) |
 | UX / design | Past experience | 2016–2017 role; still shapes how he builds tools |
